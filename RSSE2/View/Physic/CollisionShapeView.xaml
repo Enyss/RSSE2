@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="RSSE2.CollisionShapeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RSSE2"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type local:CollisionBoxViewModel}">
+            <local:CollisionBoxView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CollisionConeViewModel}">
+            <local:CollisionConeView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CollisionConvexHullViewModel}">
+            <local:CollisionConvexHullView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CollisionCylinderViewModel}">
+            <local:CollisionCylinderView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CollisionDynamicMeshViewModel}">
+            <local:CollisionDynamicMeshView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CollisionMeshViewModel}">
+            <local:CollisionMeshView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CollisionSphereViewModel}">
+            <local:CollisionSphereView DataContext="{Binding}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel>
+        <CheckBox Margin="5" IsChecked="{Binding Autogen}">Autogen Collision</CheckBox>
+        <ComboBox Margin="5" Width="200" HorizontalAlignment="Left">
+            <ComboBoxItem>Dynamic Convex Decomp Mesh</ComboBoxItem>
+            <ComboBoxItem>Convex Hull</ComboBoxItem>
+            <ComboBoxItem>Static Mesh</ComboBoxItem>
+            <ComboBoxItem>Box</ComboBoxItem>
+            <ComboBoxItem>Cone</ComboBoxItem>
+            <ComboBoxItem>Cylinder</ComboBoxItem>
+            <ComboBoxItem>Sphere</ComboBoxItem>
+        </ComboBox>
+        <ContentControl Content="{Binding}"/>
+
+    </StackPanel>
+</UserControl>
