@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    class CollisionMeshViewModel
+    class CollisionMeshViewModel: CollisionShapeViewModel
     {
+
+        private CollisionMesh _mesh;
+        public CollisionMesh Mesh { get { return _mesh; } }
+
+        public CollisionMeshViewModel(CollisionMesh mesh)
+        {
+            _mesh = mesh;
+        }
+
     }
 }

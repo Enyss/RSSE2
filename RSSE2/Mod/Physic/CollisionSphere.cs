@@ -9,10 +9,21 @@ namespace RSSE2
     public class CollisionSphere : CollisionShape
     {
         public double r;
+        public override string Name { get { return "Sphere"; } }
+
+        public CollisionSphere()
+        {
+            r = 1.0;
+        }
 
         public CollisionSphere(double radius)
         {
             r = radius;
+        }
+
+        public override CollisionShapeViewModel CreateViewModel()
+        {
+            return new CollisionSphereViewModel(this);
         }
     }
 }

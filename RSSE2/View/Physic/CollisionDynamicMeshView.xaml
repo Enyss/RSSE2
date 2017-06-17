@@ -6,7 +6,5 @@
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+    <CheckBox Margin="5" IsChecked="{Binding Autogen}">Autogen Collision</CheckBox>
 </UserControl>

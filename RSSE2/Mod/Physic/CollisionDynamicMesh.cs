@@ -8,5 +8,12 @@ namespace RSSE2
 {
     public class CollisionDynamicMesh : CollisionShape
     {
+
+        public override string Name { get { return "Dynamic Convex Decomp Mesh"; } }
+
+        public override CollisionShapeViewModel CreateViewModel()
+        {
+            return new CollisionDynamicMeshViewModel(this);
+        }
     }
 }

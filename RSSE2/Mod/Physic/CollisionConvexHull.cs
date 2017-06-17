@@ -8,5 +8,13 @@ namespace RSSE2
 {
     public class CollisionConvexHull : CollisionShape
     {
+
+        public override string Name { get { return "Convex Hull"; } }
+
+
+        public override CollisionShapeViewModel CreateViewModel()
+        {
+            return new CollisionConvexHullViewModel(this);
+        }
     }
 }

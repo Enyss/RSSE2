@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    class CollisionConvexHullViewModel
+    public class CollisionConvexHullViewModel : CollisionShapeViewModel
     {
+        private CollisionConvexHull _convexHull;
+        public CollisionConvexHull ConvexHull { get { return _convexHull; } }
+
+        public CollisionConvexHullViewModel( CollisionConvexHull convexHull )
+        {
+            _convexHull = convexHull;
+        }
     }
 }

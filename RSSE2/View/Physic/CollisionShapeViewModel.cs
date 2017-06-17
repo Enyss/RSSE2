@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    class CollisionShapeViewModel
+    public abstract class CollisionShapeViewModel : ObservableObject
     {
+
     }
 }

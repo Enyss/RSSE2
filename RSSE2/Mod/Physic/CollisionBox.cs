@@ -11,5 +11,12 @@ namespace RSSE2
         public double l;
         public double h;
         public double w;
+
+        public override string Name { get { return "Box"; } }
+
+        public override CollisionShapeViewModel CreateViewModel()
+        {
+            return new CollisionBoxViewModel(this);
+        }
     }
 }

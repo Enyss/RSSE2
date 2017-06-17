@@ -66,6 +66,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Physic\CollisionShapeViewModel.cs" />
+    <Compile Include="View\Physic\CollisionMeshView.xaml.cs">
+      <DependentUpon>CollisionMeshView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Physic\CollisionMeshViewModel.cs">
+      <DependentUpon>CollisionMeshView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Physic\CollisionConvexHullView.xaml.cs">
       <DependentUpon>CollisionConvexHullView.xaml</DependentUpon>
     </Compile>
@@ -77,12 +84,6 @@
     </Compile>
     <Compile Include="View\Physic\CollisionSphereViewModel.cs">
       <DependentUpon>CollisionSphereView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Physic\CollisionMeshView.xaml.cs">
-      <DependentUpon>CollisionMeshView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Physic\CollisionMeshViewModel.cs">
-      <DependentUpon>CollisionMeshView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Physic\CollisionDynamicMeshView.xaml.cs">
       <DependentUpon>CollisionDynamicMeshView.xaml</DependentUpon>
@@ -113,12 +114,6 @@
     </Compile>
     <Compile Include="View\Physic\PhysicViewModel.cs">
       <DependentUpon>PhysicView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Physic\CollisionShapeView.xaml.cs">
-      <DependentUpon>CollisionShapeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Physic\CollisionShapeViewModel.cs">
-      <DependentUpon>CollisionShapeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mod\Physic\CollisionBox.cs" />
     <Compile Include="Mod\Physic\CollisionCone.cs" />
@@ -174,15 +169,15 @@
     <Compile Include="View\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Physic\CollisionMeshView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Physic\CollisionConvexHullView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Physic\CollisionSphereView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Physic\CollisionMeshView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,10 +198,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Physic\PhysicView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Physic\CollisionShapeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

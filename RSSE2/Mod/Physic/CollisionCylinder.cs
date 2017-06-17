@@ -10,5 +10,12 @@ namespace RSSE2
     {
         public double h;
         public double r;
+
+        public override string Name { get { return "Cylinder"; } }
+
+        public override CollisionShapeViewModel CreateViewModel()
+        {
+            return new CollisionCylinderViewModel(this);
+        }
     }
 }

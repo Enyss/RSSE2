@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+    <StackPanel>
+        <CheckBox Margin="5" IsChecked="{Binding Autogen}">Autogen Collision</CheckBox>
+        <Grid>
+            <Label>Radius</Label>
+            <TextBox Width="200" HorizontalAlignment="Right" Margin="5"></TextBox>
+        </Grid>
+    </StackPanel>
 </UserControl>
