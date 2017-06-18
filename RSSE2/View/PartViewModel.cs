@@ -7,10 +7,20 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class PartViewModel
+    public class PartViewModel : ObservableObject
     {
         private Part _part;
         public Part Part { get { return _part; } }
+
+        public string Name
+        {
+            get { return _part.name; }
+            set
+            {
+                Part.name = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<ModViewModel> Mods { get; set; } 
 

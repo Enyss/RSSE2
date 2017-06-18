@@ -9,6 +9,7 @@ namespace RSSE2
     public class Part
     {
         public List<Mod> mod;
+        public string name;
 
         public Part()
         {

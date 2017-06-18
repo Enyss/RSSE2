@@ -36,6 +36,8 @@ namespace RSSE2
 
             Part part = new Part();
 
+            part.name = "Test Part";
+
             Model model = new Model();
             model.texture.Add(new Texture("yala"));
             model.texture.Add(new Texture("yele"));
