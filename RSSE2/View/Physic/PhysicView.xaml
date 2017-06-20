@@ -41,7 +41,7 @@
             </Grid>
             <Grid>
                 <Label>Friction</Label>
-                <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Mass}"></TextBox>
+                <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Friction}"></TextBox>
             </Grid>
             <Separator />
         </StackPanel>

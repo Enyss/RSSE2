@@ -66,13 +66,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PartTreeViewModel.cs" />
     <Compile Include="View\PartTreeView.xaml.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PartTreeViewModel.cs">
-      <DependentUpon>PartTreeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ship.cs" />
+    <Compile Include="View\PartTreeNodeViewModel.cs" />
     <Compile Include="View\Physic\CollisionShapeViewModel.cs" />
     <Compile Include="View\Physic\CollisionMeshView.xaml.cs">
       <DependentUpon>CollisionMeshView.xaml</DependentUpon>

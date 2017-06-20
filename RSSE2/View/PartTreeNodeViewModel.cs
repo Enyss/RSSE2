@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class PartTreeViewModel
+    public class PartTreeNodeViewModel
     {
         private Part _part;
         public Part Part { get { return _part; } }
 
-        public PartTreeViewModel Parent { get; set; }
+        public PartTreeNodeViewModel Parent { get; set; }
         public PartViewModel Current { get; set; }
-        public ObservableCollection<PartTreeViewModel> Children { get; set; }
+        public ObservableCollection<PartTreeNodeViewModel> Children { get; set; }
 
         public string Name { get { return _part.name; } }
         
-        public PartTreeViewModel(Part part, PartTreeViewModel parent)
+        public PartTreeNodeViewModel(Part part, PartTreeNodeViewModel parent)
         {
             _part = part;
             Parent = parent;
 
             Current = new PartViewModel(_part);
 
-            Children = new ObservableCollection<PartTreeViewModel>();
+            Children = new ObservableCollection<PartTreeNodeViewModel>();
             foreach (Part child in _part.children)
             {
-                Children.Add(new PartTreeViewModel(child, this));
+                Children.Add(new PartTreeNodeViewModel(child, this));
             }
 
         }

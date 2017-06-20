@@ -20,7 +20,7 @@
             <Label DockPanel.Dock="Top">Ship Name</Label>
             <TreeView VerticalAlignment="Stretch" Name="PartTree" ItemsSource="{Binding Tree}">
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type local:PartTreeViewModel}">
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type local:PartTreeNodeViewModel}">
                         <TextBlock Text="{Binding Name}" />
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>

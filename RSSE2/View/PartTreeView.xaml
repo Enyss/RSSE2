@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <TreeView VerticalAlignment="Stretch" Name="Tree">
         <TreeView.ItemTemplate>
-            <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type local:PartTreeViewModel}">
+            <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type local:PartTreeNodeViewModel}">
                 <TextBlock Text="{Binding Name}" />
             </HierarchicalDataTemplate>
         </TreeView.ItemTemplate>
