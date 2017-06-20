@@ -24,5 +24,19 @@ namespace RSSE2
         {
             InitializeComponent();
         }
+
+        public static readonly DependencyProperty SelectedPartProperty =
+    DependencyProperty.Register("SelectedPart", typeof(PartViewModel), typeof(PartTreeView));
+
+        public PartViewModel SelectedPart
+        {
+            get { return (PartViewModel)GetValue(SelectedPartProperty); }
+            set { SetValue(SelectedPartProperty, value); }
+        }
+
+        private void Tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            SelectedPart = new PartViewModel( ((PartTreeNodeViewModel)e.NewValue).Part );
+        }
     }
 }

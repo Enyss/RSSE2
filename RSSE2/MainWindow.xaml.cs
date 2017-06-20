@@ -28,7 +28,7 @@ namespace RSSE2
 
     {
         public PartViewModel Part { get; set; }
-        public ObservableCollection<PartTreeNodeViewModel> Tree { get; set; }
+        public PartTreeViewModel Tree { get; set; }
 
         public MainWindow()
         {
@@ -90,9 +90,9 @@ namespace RSSE2
 
             part2.components.Add(model2);
 
-            Tree = new ObservableCollection<PartTreeNodeViewModel>();
-            Tree.Add(new PartTreeNodeViewModel(part1, null));
-            Tree.Add(new PartTreeNodeViewModel(part2, null));
+            Tree = new PartTreeViewModel();
+            Tree.Parts.Add(new PartTreeNodeViewModel(part1, null));
+            Tree.Parts.Add(new PartTreeNodeViewModel(part2, null));
         }
 
     }
