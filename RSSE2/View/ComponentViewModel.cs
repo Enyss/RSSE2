@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class ModViewModel : ObservableObject
+    public class ComponentViewModel : ObservableObject
     {
     }
 }

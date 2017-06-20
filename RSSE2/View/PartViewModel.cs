@@ -22,15 +22,15 @@ namespace RSSE2
             }
         }
 
-        public ObservableCollection<ModViewModel> Mods { get; set; } 
+        public ObservableCollection<ComponentViewModel> Components { get; set; }
 
         public PartViewModel( Part part )
         {
             _part = part;
-            Mods = new ObservableCollection<ModViewModel>();
-            foreach ( Mod mod in _part.mod )
+            Components = new ObservableCollection<ComponentViewModel>();
+            foreach ( Component component in _part.components )
             {
-                Mods.Add(mod.CreateViewModel());
+                Components.Add(component.CreateViewModel());
             }
         }
     }

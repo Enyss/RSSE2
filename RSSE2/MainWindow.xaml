@@ -18,11 +18,17 @@
         </Menu>
         <DockPanel Width="400" DockPanel.Dock="Left" Margin="5">
             <Label DockPanel.Dock="Top">Ship Name</Label>
-            <TreeView VerticalAlignment="Stretch"/>
+            <TreeView VerticalAlignment="Stretch" Name="PartTree" ItemsSource="{Binding Tree}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type local:PartTreeViewModel}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
         </DockPanel>
-        <local:PartView DockPanel.Dock="Right" HorizontalAlignment="Right" Width="320" DataContext="{Binding Part}" Margin="5"/>
+        <local:PartView DockPanel.Dock="Right" HorizontalAlignment="Right" Width="320" DataContext="{Binding ElementName=PartTree, Path=SelectedItem.Current}" Margin="5"/>
         <DockPanel Margin="5">
-            <Label DockPanel.Dock="Top">3D view</Label>
+            <Label DockPanel.Dock="Top">3D View</Label>
             <TreeView VerticalAlignment="Stretch"/>
         </DockPanel>
     </DockPanel>

@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
         <Label Content="{Binding Name}" DockPanel.Dock="Top"/>
-        <ListBox ItemsSource="{Binding Mods}">
+        <ListBox ItemsSource="{Binding Components}">
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type local:ModelViewModel}">
                     <local:ModelView DataContext="{Binding}" />
