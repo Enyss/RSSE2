@@ -16,6 +16,7 @@ namespace RSSE2
 
         public Part()
         {
+            name = "empty";
             components = new List<Component>();
             children = new List<Part>();
         }
