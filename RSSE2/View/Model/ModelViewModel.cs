@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class ModelViewModel : ModViewModel
+    public class ModelViewModel : ComponentViewModel
     {
         private Model _model;
         public Model Model { get { return _model; } }

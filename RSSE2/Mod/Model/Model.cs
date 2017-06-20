@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class Model : Mod
+    public class Model : Component
     {
         public List<Texture> texture;
         public Shader shader;
@@ -19,7 +19,7 @@ namespace RSSE2
             mesh = new Mesh();
         }
 
-        public override ModViewModel CreateViewModel()
+        public override ComponentViewModel CreateViewModel()
         {
             return new ModelViewModel(this);
         }

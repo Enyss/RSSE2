@@ -6,14 +6,17 @@
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <ListBox ItemsSource="{Binding Mods}">
-        <ListBox.Resources>
-            <DataTemplate DataType="{x:Type local:ModelViewModel}">
-                <local:ModelView DataContext="{Binding}" />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type local:PhysicViewModel}">
-                <local:PhysicView DataContext="{Binding}" />
-            </DataTemplate>
-        </ListBox.Resources>
-    </ListBox>
+    <DockPanel>
+        <Label Content="{Binding Name}" DockPanel.Dock="Top"/>
+        <ListBox ItemsSource="{Binding Components}">
+            <ListBox.Resources>
+                <DataTemplate DataType="{x:Type local:ModelViewModel}">
+                    <local:ModelView DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:PhysicViewModel}">
+                    <local:PhysicView DataContext="{Binding}" />
+                </DataTemplate>
+            </ListBox.Resources>
+        </ListBox>
+    </DockPanel>
 </UserControl>

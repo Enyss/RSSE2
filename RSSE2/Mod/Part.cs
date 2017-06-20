@@ -8,11 +8,16 @@ namespace RSSE2
 {
     public class Part
     {
-        public List<Mod> mod;
+        public List<Component> components;
+        public string name;
+
+        public Part parent;
+        public List<Part> children;
 
         public Part()
         {
-            mod = new List<Mod>();
+            components = new List<Component>();
+            children = new List<Part>();
         }
     }
 }

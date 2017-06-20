@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public abstract class Mod
+    public abstract class Component
     {
 
-        public abstract ModViewModel CreateViewModel();
+        public abstract ComponentViewModel CreateViewModel();
     }
 }

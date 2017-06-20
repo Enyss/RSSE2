@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class Physic : Mod
+    public class Physic : Component
     {
 
         public bool collision;
@@ -14,7 +14,7 @@ namespace RSSE2
         public double mass;
         public double friction;
 
-        public override ModViewModel CreateViewModel()
+        public override ComponentViewModel CreateViewModel()
         {
             return new PhysicViewModel(this);
         }

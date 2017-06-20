@@ -66,6 +66,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PartTreeViewModel.cs" />
+    <Compile Include="View\PartTreeView.xaml.cs">
+      <DependentUpon>PartTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ship.cs" />
+    <Compile Include="View\PartTreeNodeViewModel.cs" />
     <Compile Include="View\Physic\CollisionShapeViewModel.cs" />
     <Compile Include="View\Physic\CollisionMeshView.xaml.cs">
       <DependentUpon>CollisionMeshView.xaml</DependentUpon>
@@ -124,8 +130,8 @@
     <Compile Include="Mod\Physic\CollisionSphere.cs" />
     <Compile Include="Mod\Physic\CollisionDynamicMesh.cs" />
     <Compile Include="Mod\Physic\Physic.cs" />
-    <Compile Include="View\ModViewModel.cs" />
-    <Compile Include="Mod\Mod.cs" />
+    <Compile Include="View\ComponentViewModel.cs" />
+    <Compile Include="Mod\Component.cs" />
     <Compile Include="Mod\Part.cs" />
     <Compile Include="View\PartView.xaml.cs">
       <DependentUpon>PartView.xaml</DependentUpon>
@@ -169,6 +175,10 @@
     <Compile Include="View\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\PartTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Physic\CollisionMeshView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

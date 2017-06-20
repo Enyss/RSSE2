@@ -22,6 +22,7 @@ namespace RSSE2
                 OnPropertyChanged("Name");
             }
         }
+
         public string Name
         {
             get

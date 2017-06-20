@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public class PhysicViewModel : ModViewModel
+    public class PhysicViewModel : ComponentViewModel
     {
         private Physic _physic;
         public Physic Physic { get { return _physic; } }
