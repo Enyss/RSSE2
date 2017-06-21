@@ -1,0 +1,20 @@
+﻿<Window x:Class="RSSE2.PartNameEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RSSE2"
+        mc:Ignorable="d"
+        local:DialogCloser.DialogResult="{Binding DialogResult}"
+        Title="New Name" Height="100" Width="300">
+    <StackPanel>
+        <Grid>
+            <Label>Name :</Label>
+            <TextBox Text="{Binding NewName}" Width="200" Height="22" Margin="25,5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        </Grid>
+        <Grid>
+            <Button Width="100" HorizontalAlignment="Left" Margin="25,5" IsCancel="True">Cancel</Button>
+            <Button Width="100" HorizontalAlignment="Right" Margin="25,5" Command="{Binding SaveCommand}" IsDefault="True">Save</Button>
+        </Grid>
+    </StackPanel>
+</Window>

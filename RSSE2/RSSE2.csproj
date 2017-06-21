@@ -69,6 +69,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\DialogCloser.cs" />
+    <Compile Include="View\PartNameEditorView.xaml.cs">
+      <DependentUpon>PartNameEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PartNameEditorViewModel.cs">
+      <DependentUpon>PartNameEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PartTreeViewModel.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
     </Compile>
@@ -180,6 +187,10 @@
     <Compile Include="View\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\PartNameEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PartTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

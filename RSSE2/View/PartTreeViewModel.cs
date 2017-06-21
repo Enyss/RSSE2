@@ -12,8 +12,8 @@ namespace RSSE2
     public class PartTreeViewModel : DependencyObject
     {
         public ObservableCollection<PartTreeNodeViewModel> Parts { set; get; }
-        private ICommand _addCommand;
-
+        private ICommand _addPartCommand;
+        private ICommand _removePartCommand;
 
         public PartTreeViewModel()
         {
@@ -28,28 +28,67 @@ namespace RSSE2
             Parts.Add(new PartTreeNodeViewModel(part, null));
         }
 
-        public ICommand AddCommand
+        public ICommand AddPartCommand
         {
             get
             {
-                if (_addCommand == null)
+                if (_addPartCommand == null)
                 {
-                    _addCommand = new RelayCommand(
+                    _addPartCommand = new RelayCommand(
                         param => this.AddPart(),
-                        param => this.CanAdd()
+                        param => this.CanAddPart()
                     );
                 }
-                return _addCommand;
+                return _addPartCommand;
             }
         }
 
-        private bool CanAdd()
+        private bool CanAddPart()
         {
             // Verify command can be executed here
             return true;
         }
 
-#endregion
+        #endregion
+
+        #region RemovePart Command
+
+        public void RemovePart( PartTreeNodeViewModel part )
+        {
+            if (part.Parent == null)
+            {
+                Parts.Remove(part);
+            }
+            else
+            {
+                part.Parent.Children.Remove(part);
+                part.Parent = null;
+            }
+        }
+
+        public ICommand RemovePartCommand
+        {
+            get
+            {
+                if (_removePartCommand == null)
+                {
+                    _removePartCommand = new RelayCommand(
+                        param => this.RemovePart(param as PartTreeNodeViewModel),
+                        param => this.CanRemove()
+                    );
+                }
+                return _removePartCommand;
+            }
+        }
+
+        private bool CanRemove()
+        {
+            // Verify command can be executed here
+            return true;
+        }
+
+        #endregion
+
 
     }
 }
