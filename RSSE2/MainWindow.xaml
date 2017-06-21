@@ -16,17 +16,8 @@
                 <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>
-        <DockPanel Width="400" DockPanel.Dock="Left" Margin="5">
-            <Label DockPanel.Dock="Top">Ship Name</Label>
-            <TreeView VerticalAlignment="Stretch" Name="PartTree" ItemsSource="{Binding Tree}">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Children}" DataType="{x:Type local:PartTreeNodeViewModel}">
-                        <TextBlock Text="{Binding Name}" />
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-        </DockPanel>
-        <local:PartView DockPanel.Dock="Right" HorizontalAlignment="Right" Width="320" DataContext="{Binding ElementName=PartTree, Path=SelectedItem.Current}" Margin="5"/>
+        <local:PartTreeView DockPanel.Dock="Left" DataContext="{Binding Tree}" x:Name="PartTree"/>
+        <local:PartView DockPanel.Dock="Right" HorizontalAlignment="Right" Width="320" DataContext="{Binding ElementName=PartTree, Path=SelectedPart}" Margin="5"/>
         <DockPanel Margin="5">
             <Label DockPanel.Dock="Top">3D View</Label>
             <TreeView VerticalAlignment="Stretch"/>
