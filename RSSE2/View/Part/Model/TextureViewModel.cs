@@ -8,9 +8,10 @@ namespace RSSE2
 {
     public class TextureViewModel : ObservableObject
     {
-
         private Texture _texture;
         public Texture Texture { get { return _texture; } }
+
+        #region Properties
 
         public string Filename
         {
@@ -31,6 +32,8 @@ namespace RSSE2
                 return name;
             }
         }
+
+        #endregion
 
         public TextureViewModel()
         {

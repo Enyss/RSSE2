@@ -8,16 +8,19 @@ namespace RSSE2
 {
     public class ModelViewModel : ComponentViewModel
     {
-        private Model _model;
-        public Model Model { get { return _model; } }
+        public Model Model { get { return (Model)_component; } }
+
+        #region Properties
 
         public TexturesViewModel Textures { get; set; }
         public ShaderViewModel Shader { get; set; }
         public MeshViewModel Mesh { get; set; }
 
+        #endregion
+
         public ModelViewModel(Model model)
         {
-            _model = model;
+            _component = model;
             Textures = new TexturesViewModel(model.texture);
             Shader = new ShaderViewModel(model.shader);
             Mesh = new MeshViewModel(model.mesh);

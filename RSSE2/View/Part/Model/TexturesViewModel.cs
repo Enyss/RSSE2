@@ -12,15 +12,11 @@ namespace RSSE2
     public class TexturesViewModel
     {
         private List<Texture> _textures;
-
-        private ICommand _addCommand;
-        private ICommand _deleteCommand;
-        private ICommand _editCommand;
-        private ICommand _upCommand;
-        private ICommand _downCommand;
-
-
         public ObservableCollection<TextureViewModel> Textures { get; }
+
+        #region Properties
+
+        #endregion
 
         public TexturesViewModel(List<Texture> textures)
         {
@@ -32,7 +28,30 @@ namespace RSSE2
             }
         }
 
+        #region Commands
+
+        private ICommand _addCommand;
         #region AddCommand
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_addCommand == null)
+                {
+                    _addCommand = new RelayCommand(
+                        param => this.AddTexture(),
+                        param => this.CanAdd()
+                    );
+                }
+                return _addCommand;
+            }
+        }
+
+        private bool CanAdd()
+        {
+            // Verify command can be executed here
+            return true;
+        }
 
         public void AddTexture()
         {
@@ -57,37 +76,10 @@ namespace RSSE2
                 Textures.Add(new TextureViewModel(tex));
             }
         }
-
-        public ICommand AddCommand
-        {
-            get
-            {
-                if (_addCommand == null)
-                {
-                    _addCommand = new RelayCommand(
-                        param => this.AddTexture(),
-                        param => this.CanAdd()
-                    );
-                }
-                return _addCommand;
-            }
-        }
-
-        private bool CanAdd()
-        {
-            // Verify command can be executed here
-            return true;
-        }
-
         #endregion
 
+        private ICommand _deleteCommand;
         #region DeleteCommand
-
-        public void DeleteTexture(TextureViewModel tex)
-        {
-            _textures.Remove(tex.Texture);
-            Textures.Remove(tex);
-        }
 
         public ICommand DeleteCommand
         {
@@ -110,9 +102,37 @@ namespace RSSE2
             return (selection == null) ? false : true;
         }
 
+        public void DeleteTexture(TextureViewModel tex)
+        {
+            _textures.Remove(tex.Texture);
+            Textures.Remove(tex);
+        }
+
         #endregion
 
+        private ICommand _editCommand;
         #region EditCommand
+
+        public ICommand EditCommand
+        {
+            get
+            {
+                if (_editCommand == null)
+                {
+                    _editCommand = new RelayCommand(
+                        param => this.EditTexture(param as TextureViewModel),
+                        param => this.CanEdit(param)
+                    );
+                }
+                return _editCommand;
+            }
+        }
+
+        private bool CanEdit(object selection)
+        {
+            // Verify command can be executed here
+            return (selection == null) ? false : true;
+        }
 
         public void EditTexture(TextureViewModel tex)
         {
@@ -136,43 +156,12 @@ namespace RSSE2
                 tex.Filename = filename;
             }
         }
-
-        public ICommand EditCommand
-        {
-            get
-            {
-                if (_editCommand == null)
-                {
-                    _editCommand = new RelayCommand(
-                        param => this.EditTexture(param as TextureViewModel),
-                        param => this.CanEdit(param)
-                    );
-                }
-                return _editCommand;
-            }
-        }
-
-        private bool CanEdit(object selection)
-        {
-            // Verify command can be executed here
-            return (selection == null) ? false : true;
-        }
-
+        
         #endregion
 
+        private ICommand _upCommand;
         #region UpCommand
-
-        public void UpTexture(int selected)
-        {
-            TextureViewModel tmp = Textures[selected];
-            Texture _tmp = _textures[selected];
-            Textures[selected] = Textures[selected - 1];
-            _textures[selected] = _textures[selected - 1];
-            Textures[selected - 1] = tmp;
-            _textures[selected - 1] = _tmp;
-        }
-
-
+        
         public ICommand UpCommand
         {
             get
@@ -193,22 +182,21 @@ namespace RSSE2
             return index>0;
         }
 
+        public void UpTexture(int selected)
+        {
+            TextureViewModel tmp = Textures[selected];
+            Texture _tmp = _textures[selected];
+            Textures[selected] = Textures[selected - 1];
+            _textures[selected] = _textures[selected - 1];
+            Textures[selected - 1] = tmp;
+            _textures[selected - 1] = _tmp;
+        }
 
         #endregion
 
+        private ICommand _downCommand;
         #region DownCommand
-
-        public void DownTexture(int selected)
-        {
-            TextureViewModel tmp = Textures[selected+1];
-            Texture _tmp = _textures[selected+1];
-            Textures[selected+1] = Textures[selected];
-            _textures[selected+1] = _textures[selected];
-            Textures[selected] = tmp;
-            _textures[selected] = _tmp;
-        }
-
-
+        
         public ICommand DownCommand
         {
             get
@@ -229,6 +217,19 @@ namespace RSSE2
             return (index >= 0 && index < Textures.Count-1);
         }
 
-#endregion
+        public void DownTexture(int selected)
+        {
+            TextureViewModel tmp = Textures[selected + 1];
+            Texture _tmp = _textures[selected + 1];
+            Textures[selected + 1] = Textures[selected];
+            _textures[selected + 1] = _textures[selected];
+            Textures[selected] = tmp;
+            _textures[selected] = _tmp;
+        }
+
+        #endregion
+
+        #endregion
+
     }
 }

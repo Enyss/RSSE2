@@ -9,8 +9,9 @@ namespace RSSE2
 {
     public class PhysicViewModel : ComponentViewModel
     {
-        private Physic _physic;
-        public Physic Physic { get { return _physic; } }
+        public Physic Physic { get { return (Physic)_component; } }
+
+        #region Properties
 
         private CollisionShapeViewModel collisionShape;
         public CollisionShapeViewModel CollisionShape
@@ -25,40 +26,40 @@ namespace RSSE2
 
         public bool Collision
         {
-            get { return _physic.collision; }
+            get { return Physic.collision; }
             set
             {
-                _physic.collision = value;
+                Physic.collision = value;
                 OnPropertyChanged();
             }
         }
 
         public double Mass
         {
-            get { return _physic.mass; }
+            get { return Physic.mass; }
             set
             {
-                _physic.mass = value;
+                Physic.mass = value;
                 OnPropertyChanged();
             }
         }
 
         public double Friction
         {
-            get { return _physic.friction; }
+            get { return Physic.friction; }
             set
             {
-                _physic.friction = value;
+                Physic.friction = value;
                 OnPropertyChanged();
             }
         }
 
         public CollisionShape Shape
         {
-            get { return _physic.shape; }
+            get { return Physic.shape; }
             set
             {
-                _physic.shape = value;
+                Physic.shape = value;
                 OnPropertyChanged();
             }
         }
@@ -70,12 +71,11 @@ namespace RSSE2
         
         public string ShapeType
         {
-            get { return _physic.shape.Name; }
+            get { return Physic.shape.Name; }
             set
             {
-                if (value != _physic.shape.Name)
+                if (value != Physic.shape.Name)
                 {
-
                     /* Use an item factory? */
                     switch(value)
                     {
@@ -107,9 +107,11 @@ namespace RSSE2
             }
         }
 
+        #endregion
+
         public PhysicViewModel( Physic physic)
         {
-            _physic = physic;
+            _component = physic;
             if (Shape != null)
             {
                 CollisionShape = Shape.CreateViewModel();
