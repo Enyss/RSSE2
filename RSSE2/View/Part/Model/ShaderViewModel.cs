@@ -12,6 +12,8 @@ namespace RSSE2
         private Shader _shader;
         public Shader Shader { get { return _shader; } }
 
+        #region Properties
+
         public string Filename
         {
             get { return _shader.filename; }
@@ -32,11 +34,37 @@ namespace RSSE2
             }
         }
 
-        public ICommand _editCommand;
+        #endregion
 
         public ShaderViewModel(Shader shader)
         {
             _shader = shader;
+        }
+
+        #region Commands
+
+        private ICommand _editCommand;
+        #region EditCommand
+
+        public ICommand EditCommand
+        {
+            get
+            {
+                if (_editCommand == null)
+                {
+                    _editCommand = new RelayCommand(
+                        param => this.EditShader(),
+                        param => this.CanEdit()
+                    );
+                }
+                return _editCommand;
+            }
+        }
+
+        private bool CanEdit()
+        {
+            // Verify command can be executed here
+            return true;
         }
 
         public void EditShader()
@@ -62,25 +90,9 @@ namespace RSSE2
             }
         }
 
-        public ICommand EditCommand
-        {
-            get
-            {
-                if (_editCommand == null)
-                {
-                    _editCommand = new RelayCommand(
-                        param => this.EditShader(),
-                        param => this.CanEdit()
-                    );
-                }
-                return _editCommand;
-            }
-        }
+        #endregion
 
-        private bool CanEdit()
-        {
-            // Verify command can be executed here
-            return true;
-        }
+        #endregion
+
     }
 }

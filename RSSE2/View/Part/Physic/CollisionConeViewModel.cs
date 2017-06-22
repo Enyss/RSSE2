@@ -11,6 +11,8 @@ namespace RSSE2
         private CollisionCone _cone;
         public CollisionCone Cone { get { return _cone; } }
 
+        #region Properties
+
         public double Radius
         {
             get { return _cone.r; }
@@ -20,7 +22,6 @@ namespace RSSE2
                 OnPropertyChanged();
             }
         }
-        
 
         public double Height
         {
@@ -31,6 +32,8 @@ namespace RSSE2
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         public CollisionConeViewModel(CollisionCone cone)
         {

@@ -8,10 +8,10 @@ namespace RSSE2
 {
     class CollisionCylinderViewModel : CollisionShapeViewModel
     {
-
-
         private CollisionCylinder _cylinder;
         public CollisionCylinder Cylinder { get { return _cylinder; } }
+
+        #region Properties
 
         public double Radius
         {
@@ -33,6 +33,8 @@ namespace RSSE2
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         public CollisionCylinderViewModel(CollisionCylinder cylinder)
         {

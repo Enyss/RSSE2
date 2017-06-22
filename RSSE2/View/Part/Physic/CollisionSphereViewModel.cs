@@ -8,9 +8,10 @@ namespace RSSE2
 {
     class CollisionSphereViewModel : CollisionShapeViewModel
     {
-
         private CollisionSphere _sphere;
         public CollisionSphere Sphere { get { return _sphere; } }
+
+        #region Properties
 
         public double Radius
         {
@@ -21,6 +22,8 @@ namespace RSSE2
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         public CollisionSphereViewModel(CollisionSphere sphere)
         {

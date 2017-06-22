@@ -8,7 +8,6 @@ namespace RSSE2
 {
     class CollisionMeshViewModel: CollisionShapeViewModel
     {
-
         private CollisionMesh _mesh;
         public CollisionMesh Mesh { get { return _mesh; } }
 

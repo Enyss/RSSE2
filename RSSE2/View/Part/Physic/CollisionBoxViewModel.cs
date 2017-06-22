@@ -11,6 +11,8 @@ namespace RSSE2
         private CollisionBox _box;
         public CollisionBox Box { get { return _box; } }
 
+        #region Properties
+
         public double Length
         {
             get { return _box.l; }
@@ -40,6 +42,8 @@ namespace RSSE2
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         public CollisionBoxViewModel( CollisionBox box )
         {

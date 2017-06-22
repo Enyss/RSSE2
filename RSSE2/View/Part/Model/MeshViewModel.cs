@@ -12,6 +12,8 @@ namespace RSSE2
         private Mesh _mesh;
         public Mesh Mesh { get { return _mesh; } }
 
+        #region Properties
+
         public string Filename
         {
             get { return _mesh.filename; }
@@ -31,11 +33,37 @@ namespace RSSE2
             }
         }
 
-        public ICommand _editCommand;
+        #endregion
 
         public MeshViewModel(Mesh mesh)
         {
             _mesh = mesh;
+        }
+
+        #region Commands
+
+        private ICommand _editCommand;
+        #region EditCommand
+
+        public ICommand EditCommand
+        {
+            get
+            {
+                if (_editCommand == null)
+                {
+                    _editCommand = new RelayCommand(
+                        param => this.EditMesh(),
+                        param => this.CanEdit()
+                    );
+                }
+                return _editCommand;
+            }
+        }
+
+        private bool CanEdit()
+        {
+            // Verify command can be executed here
+            return true;
         }
 
         public void EditMesh()
@@ -61,25 +89,8 @@ namespace RSSE2
             }
         }
 
-        public ICommand EditCommand
-        {
-            get
-            {
-                if (_editCommand == null)
-                {
-                    _editCommand = new RelayCommand(
-                        param => this.EditMesh(),
-                        param => this.CanEdit()
-                    );
-                }
-                return _editCommand;
-            }
-        }
+        #endregion
 
-        private bool CanEdit()
-        {
-            // Verify command can be executed here
-            return true;
-        }
+        #endregion
     }
 }
