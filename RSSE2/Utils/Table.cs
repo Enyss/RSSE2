@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    public abstract class Component
+    public class Table : Dictionary<string, dynamic>
     {
-
-        public abstract ComponentViewModel CreateViewModel();
-        public abstract void ToTable(Table table);
-
     }
 }

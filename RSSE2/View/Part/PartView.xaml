@@ -8,13 +8,20 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
         <Label Content="{Binding Name}" DockPanel.Dock="Top"/>
-        <ListBox ItemsSource="{Binding Components}">
+        <Label DockPanel.Dock="Top">Position:</Label>
+        <local:Vector3View DataContext="{Binding Position}" DockPanel.Dock="Top"/>
+        <Label DockPanel.Dock="Top">Rotation:</Label>
+        <local:Vector3View DataContext="{Binding Rotation}" DockPanel.Dock="Top"/>
+        <ListBox ItemsSource="{Binding Components}" DockPanel.Dock="Top">
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type local:ModelViewModel}">
                     <local:ModelView DataContext="{Binding}" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type local:PhysicViewModel}">
                     <local:PhysicView DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type local:LightViewModel}">
+                    <local:LightView DataContext="{Binding}" />
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>

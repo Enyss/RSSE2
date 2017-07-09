@@ -23,11 +23,36 @@ namespace RSSE2
             }
         }
 
+        private Vector3ViewModel position;
+        public Vector3ViewModel Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Vector3ViewModel rotation;
+        public Vector3ViewModel Rotation
+        {
+            get { return rotation; }
+            set
+            {
+                rotation = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<ComponentViewModel> Components { get; set; }
 
         public PartViewModel(Part part)
         {
             _part = part;
+            position = new Vector3ViewModel(_part.position);
+            rotation = new Vector3ViewModel(_part.rotation);
+
             Components = new ObservableCollection<ComponentViewModel>();
             foreach (Component component in _part.components)
             {

@@ -10,5 +10,10 @@ namespace RSSE2
     {
         public List<Part> parts;
         public string name;
+
+        public Ship()
+        {
+            parts = new List<Part>();
+        }
     }
 }

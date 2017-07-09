@@ -29,21 +29,24 @@
             <local:CollisionSphereView DataContext="{Binding}" />
         </DataTemplate>
     </UserControl.Resources>
-    <Expander Header="Physic" Width="300">
-        <StackPanel>
-            <CheckBox Margin="5" IsChecked="{Binding Collision}">Enable collision</CheckBox>
-            <ComboBox Margin="5" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding ShapeList}" SelectedValue="{Binding ShapeType}" />
-            <ContentControl Content="{Binding CollisionShape}"/>
-            <Separator />
-            <Grid>
-                <Label>Mass</Label>
-                <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Mass}"></TextBox>
-            </Grid>
-            <Grid>
-                <Label>Friction</Label>
-                <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Friction}"></TextBox>
-            </Grid>
-            <Separator />
-        </StackPanel>
-    </Expander>
+    <StackPanel>
+        <Expander Header="Physic" Width="300">
+            <StackPanel>
+                <CheckBox Margin="5" IsChecked="{Binding Collision}">Enable collision</CheckBox>
+                <ComboBox Margin="5" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding ShapeList}" SelectedValue="{Binding ShapeType}" />
+                <ContentControl Content="{Binding CollisionShape}"/>
+                <Separator />
+                <Grid>
+                    <Label>Mass</Label>
+                    <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Mass}"></TextBox>
+                </Grid>
+                <Grid>
+                    <Label>Friction</Label>
+                    <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Friction}"></TextBox>
+                </Grid>
+                <Separator />
+            </StackPanel>
+        </Expander>
+        <Separator/>
+    </StackPanel>
 </UserControl>
