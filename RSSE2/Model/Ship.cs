@@ -8,12 +8,14 @@ namespace RSSE2
 {
     public class Ship
     {
-        public List<Part> parts;
+        public List<Part> interior;
+        public List<Part> exterior;
         public string name;
 
         public Ship()
         {
-            parts = new List<Part>();
+            interior = new List<Part>();
+            exterior = new List<Part>();
         }
     }
 }

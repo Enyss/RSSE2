@@ -38,7 +38,8 @@ namespace RSSE2
             Table camerasTable = ToTable(dv.Tuple[3].Table);
             Table coordsTable = ToTable(dv.Tuple[4].Table);
 
-            AddExteriorTableToShip(interiorTable, ship);
+            ship.interior = tableToPartList(interiorTable);
+            ship.exterior = tableToPartList(exteriorTable);
 
             return ship;
         }
@@ -70,21 +71,23 @@ namespace RSSE2
             return table;
         }
 
-        public void AddExteriorTableToShip(Table table, Ship ship)
+        public List<Part> tableToPartList(Table table)
         {
+            List<Part> list = new List<Part>();
             table.Remove("Total");
+
             foreach( KeyValuePair<string,dynamic> e in table)
             {
                 int id = Int32.Parse(e.Key.Substring(4));  //start at the end of Mesh
-                ship.parts.Add( new Part( e.Value, id)  );
+                list.Add( new Part( e.Value, id)  );
             }
 
             List<Part> toRemove = new List<Part>();
-            foreach( Part part in ship.parts)
+            foreach( Part part in list)
             {
                 if (part.parentName != "NONE")
                 {
-                    Part parent = ship.parts.Find(x => x.rogName == part.parentName );
+                    Part parent = list.Find(x => x.rogName == part.parentName );
                     if (parent != null)
                     {
                         toRemove.Add(part);
@@ -93,8 +96,9 @@ namespace RSSE2
                     }
                 }
             }
-            ship.parts.RemoveAll(x => toRemove.Contains(x));
+            list.RemoveAll(x => toRemove.Contains(x));
 
+            return list;
         }        
     }
 }

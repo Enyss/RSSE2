@@ -90,7 +90,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Application.cs" />
     <Compile Include="Model\Part\Light\Color.cs" />
+    <Compile Include="View\ShipAreaView.xaml.cs">
+      <DependentUpon>ShipAreaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShipView.xaml.cs">
+      <DependentUpon>ShipView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShipViewModel.cs">
+      <DependentUpon>ShipView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Part\Light\LightView.xaml.cs">
       <DependentUpon>LightView.xaml</DependentUpon>
     </Compile>
@@ -225,6 +235,14 @@
     <Compile Include="View\Part\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\ShipAreaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShipView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Part\Light\LightView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
