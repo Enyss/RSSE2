@@ -62,6 +62,7 @@ namespace RSSE2.Backend
                 return;
 
             parts.Add(part, new Model((RSSE2.Model)part.components["Model"]) );
+            var error = GL.GetError();
             parts[part].Load();
         }
 
@@ -77,15 +78,15 @@ namespace RSSE2.Backend
             Matrix4 P = Matrix4.CreatePerspectiveFieldOfView(
 MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
             Matrix4 V = Matrix4.LookAt(
-                new OpenTK.Vector3(0, 0, 20),
+                new OpenTK.Vector3(15, 0, 15),
                 new OpenTK.Vector3(0, 0, 0),
                 new OpenTK.Vector3(0, 1, 0));
 
-            Matrix4 VP = V * P;
+            Matrix4 VP = V*P;
 
-            foreach ( Model model in parts.Values )
-            {
-                model.Draw(VP);
+            foreach ( KeyValuePair<Part,Model> pair in parts )
+            { 
+                    pair.Value.Draw(VP);
             }
 
             glControl.SwapBuffers();

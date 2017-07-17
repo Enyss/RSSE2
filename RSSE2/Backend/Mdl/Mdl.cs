@@ -180,7 +180,7 @@ namespace RSSE2.Backend
             int size1 = b.ReadInt32();
             int type1 = b.ReadInt32();
             int type2 = b.ReadInt32();
-            index = readShortArray(b, size1 *2);
+            index = readShortArray(b, size1*3/4);
         }
 
         private List<float> readFloatArray(BinaryReader b, int length)

@@ -109,7 +109,6 @@ namespace RSSE2.Backend
             GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float) * mdl.VBO.Length,
                 mdl.VBO, BufferUsageHint.StreamDraw);
 
-
             /* Buffer the Indexes */
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, mdl.IndexesHandle);
             GL.BufferData(BufferTarget.ElementArrayBuffer, sizeof(ushort) * mdl.Indexes.Length,
@@ -118,7 +117,7 @@ namespace RSSE2.Backend
             /* draw the Model */
             GL.DrawElements(BeginMode.Triangles, mdl.Indexes.Length, DrawElementsType.UnsignedShort, 0);
 
-
+            var error = GL.GetError();
         }
     }
 }

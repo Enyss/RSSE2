@@ -42,7 +42,7 @@ namespace RSSE2
             Backend.SceneManager scene = Backend.SceneManager.Instance;
             foreach( Part part in Ship.Ship.exterior )
             {
-                scene.LoadPart(part);
+                    scene.LoadPart(part);
             }
         }
     }
