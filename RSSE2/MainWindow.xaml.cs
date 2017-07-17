@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
+using OpenTK;
+using OpenTK.Graphics.OpenGL4;
+using System.IO;
 
 namespace RSSE2
 {
@@ -33,12 +35,9 @@ namespace RSSE2
             InitializeComponent();
             this.DataContext = this;
 
-
-            RogLoader loader = new RogLoader();
-
-            Ship ship = loader.Load("test2.rog", "Archelion_SV_46_II"); // "VoidComm_OPS4_sat", "Archelion_SV_46_II"
-
-            Ship = new ShipViewModel(ship);
+            Application app = Application.Instance;
+            app.LoadShip("Archelion_SV_46_II");
+            Ship = new ShipViewModel(app.CurrentShip);
         }
 
     }

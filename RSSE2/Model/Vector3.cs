@@ -24,6 +24,11 @@ namespace RSSE2
             this.z = z;
         }
 
+        internal float[] ToArray()
+        {
+            return new float[3]{ (float)x, (float)y, (float)z };
+        }
+
         public Vector3(Table table)
         {
             x = table["x"];

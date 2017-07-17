@@ -54,7 +54,7 @@ namespace RSSE2
             rotation = new Vector3ViewModel(_part.rotation);
 
             Components = new ObservableCollection<ComponentViewModel>();
-            foreach (Component component in _part.components)
+            foreach (Component component in _part.components.Values)
             {
                 Components.Add(component.CreateViewModel());
             }
@@ -83,10 +83,14 @@ namespace RSSE2
             return true;
         }
 
-        public void RemoveComponent(ComponentViewModel Component)
+        public void RemoveComponent(ComponentViewModel component)
         {
-            Components.Remove(Component);
-            Part.components.Remove(Component.Component);
+            Components.Remove(component);
+
+            // find the key
+            string key = Part.components.FirstOrDefault(x => x.Value == component.Component).Key;
+            // remove
+            Part.components.Remove(key);
         }
 
         #endregion

@@ -19,9 +19,12 @@ namespace RSSE2
             script = new Script(CoreModules.Preset_Complete);
         }
 
-        public Ship Load(string filename, string name)
+        public Ship Load(string name)
         {
             Ship ship = new Ship();
+
+            string filename = Application.Instance.Settings.RSFolder 
+                + @"Mod\RogSysCM\Ships\" + name + ".rog";
 
             string luaTable = File.ReadAllText(filename);
 
@@ -40,6 +43,7 @@ namespace RSSE2
 
             ship.interior = tableToPartList(interiorTable);
             ship.exterior = tableToPartList(exteriorTable);
+            ship.name = name;
 
             return ship;
         }

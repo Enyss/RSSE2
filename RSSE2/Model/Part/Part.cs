@@ -8,7 +8,7 @@ namespace RSSE2
 {
     public class Part
     {
-        public List<Component> components;
+        public Dictionary<string, Component> components;
         public string name;
         public string rogName;
 
@@ -21,7 +21,7 @@ namespace RSSE2
 
         public Part()
         {
-            components = new List<Component>();
+            components = new Dictionary<string, Component>();
             children = new List<Part>();
 
             name = "New part";
@@ -34,7 +34,7 @@ namespace RSSE2
 
         public Part( Table table, int id )
         {
-            components = new List<Component>();
+            components = new Dictionary<string, Component>();
             children = new List<Part>();
 
             name = table["Name"];
@@ -44,11 +44,11 @@ namespace RSSE2
             rotation = new Vector3(table["Rotation"]);
 
 
-            components.Add(new Model(table));
-            components.Add(new Physic(table));
+            components.Add("Model", new Model(table));
+            components.Add("Physic", new Physic(table));
             if (table["SpecialObjectName"] == "LIGHT")
             {
-                components.Add(new Light(table));
+                components.Add("Light", new Light(table));
             }
         }
     }

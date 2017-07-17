@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RSSE2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600">
+        Title="RSSE : A Rogue System Ship Editor" Height="900" Width="1600">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
