@@ -21,7 +21,7 @@ namespace RSSE2
 
         public Ship Load(string name)
         {
-            Ship ship = new Ship();
+            Ship ship = new Ship(name);
 
             string filename = Application.Instance.Settings.RSFolder 
                 + @"Mod\RogSysCM\Ships\" + name + ".rog";
@@ -42,10 +42,19 @@ namespace RSSE2
             Table coordsTable = ToTable(dv.Tuple[4].Table);
 
             ship.interior = tableToPartList(interiorTable);
+            ship.interiorTree = removeNonRoot(ship.interior);
+
             ship.exterior = tableToPartList(exteriorTable);
-            ship.name = name;
+            ship.exteriorTree = removeNonRoot(ship.exterior);
 
             return ship;
+        }
+
+        private List<Part> removeNonRoot(List<Part> list)
+        {
+            List<Part> value = new List<Part>(list);
+            value.RemoveAll(x => x.parent != null);
+            return value;
         }
 
         public Table ToTable(MoonSharp.Interpreter.Table luaTable)
@@ -100,7 +109,6 @@ namespace RSSE2
                     }
                 }
             }
-            list.RemoveAll(x => toRemove.Contains(x));
 
             return list;
         }        

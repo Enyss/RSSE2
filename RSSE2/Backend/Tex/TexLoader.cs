@@ -45,6 +45,10 @@ namespace RSSE2.Backend
                             GL.CompressedTexImage2D(TextureTarget.Texture2D, lvl, PixelInternalFormat.CompressedRgbaS3tcDxt5Ext,
                                 textures[name].width[lvl], textures[name].height[lvl], 0, textures[name].size[lvl], textures[name].data[lvl]);
                             break;
+                        case TextureFormat.DTX5n:
+                            GL.CompressedTexImage2D(TextureTarget.Texture2D, lvl, PixelInternalFormat.CompressedRgbaS3tcDxt5Ext,
+                                textures[name].width[lvl], textures[name].height[lvl], 0, textures[name].size[lvl], textures[name].data[lvl]);
+                            break;
                         default:
                             GL.TexImage2D(TextureTarget.Texture2D, lvl, PixelInternalFormat.Rgba,
                                  textures[name].width[lvl], textures[name].height[lvl], 0, PixelFormat.Rgba, PixelType.UnsignedInt8888, textures[name].data[lvl]);
@@ -55,13 +59,12 @@ namespace RSSE2.Backend
         }
         public void Unload(string name)
         { }
-        public void Add(string filename)
+        public void Add(string name)
         {
-            string f = filename.Split(new char[] { '\\', '/' }).Last();
-            string name = f.Substring(0, f.Length - 4);
 
             if (!textures.ContainsKey(name))
             {
+                string filename = Application.Instance.CurrentShip.Folder + name + ".tex";
                 textures[name] = new Tex(filename);
             }
         }

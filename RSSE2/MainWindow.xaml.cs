@@ -38,8 +38,12 @@ namespace RSSE2
             Application app = Application.Instance;
             app.LoadShip("Archelion_SV_46_II");
             Ship = new ShipViewModel(app.CurrentShip);
+
+            Backend.SceneManager scene = Backend.SceneManager.Instance;
+            foreach( Part part in Ship.Ship.exterior )
+            {
+                scene.LoadPart(part);
+            }
         }
-
     }
-
 }

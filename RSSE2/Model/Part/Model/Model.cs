@@ -21,8 +21,15 @@ namespace RSSE2
 
         public Model(Table table)
         {
+            if (table.ContainsKey("Model"))
+            {
+                mesh = new Mesh(table["Model"]);
+            }
+            else
+            {
+                mesh = new Mesh(table["Name"]);
+            }
 
-            mesh = new Mesh(table["Name"] + ".mdl");
             if (table.ContainsKey("Material"))
             {
                 texture = new List<Texture>();
@@ -31,10 +38,10 @@ namespace RSSE2
             else
             {
                 texture = new List<Texture>();
-                shader = new Shader(table["Shader"] + ".shader");
+                shader = new Shader(table["Shader"]);
                 foreach (KeyValuePair<string, dynamic> e in table["Texture"])
                 {
-                    texture.Add(new Texture(e.Value + ".tex"));
+                    texture.Add(new Texture(e.Value));
                 }
             }
         }

@@ -19,14 +19,16 @@ namespace RSSE2
             shader = new Dictionary<string, int>();
         }
 
-        public void Load(string filename)
+        public void Load(string name)
         {
-            if (shader.ContainsKey(filename))
+            if (shader.ContainsKey(name))
                 return;
 
+            string filename = Application.Instance.Settings.RSFolder +
+                @"Shaders\rsGeneral\" + name + ".shader";
             List<string> file = File.ReadAllLines(filename).ToList();
 
-            shader.Add(filename, GL.CreateProgram());
+            shader.Add(name, GL.CreateProgram());
 
             int vertexShaderHandle = GL.CreateShader(ShaderType.VertexShader);
             string vertexShader = GetVertexShader(file);
@@ -41,12 +43,12 @@ namespace RSSE2
             string log2 = GL.GetShaderInfoLog(fragmentShaderHandle);
 
 
-            GL.AttachShader(shader[filename], vertexShaderHandle);
-            GL.AttachShader(shader[filename], fragmentShaderHandle);
-            GL.LinkProgram(shader[filename]);
-            GL.DetachShader(shader[filename], vertexShaderHandle);
-            GL.DetachShader(shader[filename], fragmentShaderHandle);
-            string log = GL.GetProgramInfoLog(shader[filename]);
+            GL.AttachShader(shader[name], vertexShaderHandle);
+            GL.AttachShader(shader[name], fragmentShaderHandle);
+            GL.LinkProgram(shader[name]);
+            GL.DetachShader(shader[name], vertexShaderHandle);
+            GL.DetachShader(shader[name], fragmentShaderHandle);
+            string log = GL.GetProgramInfoLog(shader[name]);
 
         }
 

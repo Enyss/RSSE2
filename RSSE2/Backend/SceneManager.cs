@@ -58,8 +58,10 @@ namespace RSSE2.Backend
         {
             if (parts.ContainsKey(part))
                 return;
+            if (!part.components.ContainsKey("Model"))
+                return;
 
-            parts.Add(part, new Model((RSSE2.Model)part.components["Model"]));
+            parts.Add(part, new Model((RSSE2.Model)part.components["Model"]) );
             parts[part].Load();
         }
 
@@ -75,7 +77,7 @@ namespace RSSE2.Backend
             Matrix4 P = Matrix4.CreatePerspectiveFieldOfView(
 MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
             Matrix4 V = Matrix4.LookAt(
-                new OpenTK.Vector3(10, 3, 20),
+                new OpenTK.Vector3(0, 0, 20),
                 new OpenTK.Vector3(0, 0, 0),
                 new OpenTK.Vector3(0, 1, 0));
 

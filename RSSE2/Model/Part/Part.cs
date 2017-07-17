@@ -43,12 +43,21 @@ namespace RSSE2
             position = new Vector3(table["Position"]);
             rotation = new Vector3(table["Rotation"]);
 
-
-            components.Add("Model", new Model(table));
-            components.Add("Physic", new Physic(table));
-            if (table["SpecialObjectName"] == "LIGHT")
+            switch( table["SpecialObjectName"] )
             {
-                components.Add("Light", new Light(table));
+                case "HULLexterior":
+                    components.Add("Physic", new Physic(table));
+                    components.Add("Model", new Model(table));
+                    break;
+                case "HULLinterior":
+                    components.Add("Physic", new Physic(table));
+                    components.Add("Model", new Model(table));
+                    break;
+                case "LIGHT":
+                    components.Add("Light", new Light(table));
+                    break;
+                default:
+                    break;
             }
         }
     }

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace RSSE2.Backend
 {
-    public enum TextureFormat { RGBA, DTX1=8, DTX5=6 }
+    public enum TextureFormat { RGBA, DTX1=8, DTX5=6, DTX5n=20 }
     public class Tex
     {
         public TextureFormat format;
