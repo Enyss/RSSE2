@@ -75,18 +75,23 @@ namespace RSSE2.Backend
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            Matrix4 P = Matrix4.CreatePerspectiveFieldOfView(
-MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
+            Matrix4 P = Matrix4.CreateOrthographic(80, 60, 0.1f, 100); /*Matrix4.CreatePerspectiveFieldOfView(
+MathHelper.PiOver2, 4f / 3, 0.1f, 100f);*/
             Matrix4 V = Matrix4.LookAt(
-                new OpenTK.Vector3(15, 0, 15),
+                new OpenTK.Vector3(15, 0, 0),
                 new OpenTK.Vector3(0, 0, 0),
                 new OpenTK.Vector3(0, 1, 0));
 
             Matrix4 VP = V*P;
 
             foreach ( KeyValuePair<Part,Model> pair in parts )
-            { 
-                    pair.Value.Draw(VP);
+            {
+                Matrix4 rotX = Matrix4.CreateRotationX(-(float)pair.Key.rotation.x / 180 * MathHelper.Pi);
+                Matrix4 rotY = Matrix4.CreateRotationY(-(float)pair.Key.rotation.z / 180 * MathHelper.Pi);
+                Matrix4 rotZ = Matrix4.CreateRotationZ((float)pair.Key.rotation.y / 180 * MathHelper.Pi);
+                Matrix4 trans = Matrix4.CreateTranslation((float)pair.Key.position.x, (float)pair.Key.position.z, (float)pair.Key.position.y);
+                Matrix4 T = rotZ * rotX * rotY * trans;
+                pair.Value.Draw(T*VP);
             }
 
             glControl.SwapBuffers();

@@ -94,9 +94,9 @@ namespace RSSE2.Backend
             {
                 GL.BindTexture(TextureTarget.Texture2D, scene.texLoader.loadedTexture["pink"]);
             }
-            
+
             /* set the MVP matrix */
-            Matrix4 MVP = mdl.M * VP;
+            Matrix4 MVP = VP; //mdl.M * VP;
             index = GL.GetUniformLocation(scene.shaderLoader.shader[shader], "MVP");
             GL.UniformMatrix4(index, false, ref MVP);
 
