@@ -49,15 +49,22 @@ namespace RSSE2
 
         public PartViewModel(Part part)
         {
+            /* set the Properties */
             _part = part;
             position = new Vector3ViewModel(_part.position);
             rotation = new Vector3ViewModel(_part.rotation);
 
+            /* Setup the update the 3D view on position/rotation change */
+            position.PropertyChanged += (sender, args) => { Backend.SceneManager.Instance.Paint(); };
+            rotation.PropertyChanged += (sender, args) => { Backend.SceneManager.Instance.Paint(); };
+
+            /* Create the ComponentViewModels */
             Components = new ObservableCollection<ComponentViewModel>();
             foreach (Component component in _part.components.Values)
             {
                 Components.Add(component.CreateViewModel());
             }
+
         }
         
         private ICommand _removeComponentCommand;

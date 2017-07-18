@@ -14,9 +14,7 @@ namespace RSSE2
 
         protected void OnPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

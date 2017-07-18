@@ -25,6 +25,10 @@ namespace RSSE2.Backend
         private GLControl glControl;
         public GLControl Control { get { return glControl; } }
 
+        private OpenTK.Vector3 eye;
+        private OpenTK.Vector3 direction;
+        private OpenTK.Vector3 top;
+
         public ShaderLoader shaderLoader;
         public TexLoader texLoader;
         public MdlLoader mdlLoader;
@@ -52,6 +56,11 @@ namespace RSSE2.Backend
             mdlLoader = new MdlLoader();
 
             parts = new Dictionary<Part, Model>();
+
+            /* Initialize the camera */
+            eye = new OpenTK.Vector3(0, 0, 0);
+            direction = new OpenTK.Vector3(0, 0, 1);
+            top = new OpenTK.Vector3(0, 1, 0);
         }
 
         public void LoadPart(Part part)
@@ -75,14 +84,10 @@ namespace RSSE2.Backend
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            Matrix4 P = Matrix4.CreateOrthographic(80, 60, 0.1f, 100); /*Matrix4.CreatePerspectiveFieldOfView(
-MathHelper.PiOver2, 4f / 3, 0.1f, 100f);*/
-            Matrix4 V = Matrix4.LookAt(
-                new OpenTK.Vector3(15, 0, 0),
-                new OpenTK.Vector3(0, 0, 0),
-                new OpenTK.Vector3(0, 1, 0));
+            Matrix4 P = Matrix4.CreatePerspectiveFieldOfView(
+MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
 
-            Matrix4 VP = V*P;
+            Matrix4 VP = Matrix4.LookAt(eye,eye+direction,top)*P;
 
             foreach ( KeyValuePair<Part,Model> pair in parts )
             {
@@ -95,6 +100,69 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);*/
             }
 
             glControl.SwapBuffers();
+        }
+
+        public void TranslateCamera(float distance, Translation translation)
+        {
+            switch (translation)
+            {
+                case Translation.Forward:
+                    eye = eye + distance * direction;
+                    break;
+                case Translation.Backward:
+                    eye = eye - distance * direction;
+                    break;
+                case Translation.Up:
+                    eye = eye + distance * top;
+                    break;
+                case Translation.Down:
+                    eye = eye - distance * top;
+                    break;
+                case Translation.Left:
+                    eye = eye + distance * OpenTK.Vector3.Cross(top, direction);
+                    break;
+                case Translation.Right:
+                    eye = eye - distance * OpenTK.Vector3.Cross(top, direction); ;
+                    break;
+
+            }
+            Paint();
+        }
+
+        public void RotateCamera( float angle, Rotation rotation )
+        {
+            Matrix4 rot;
+            switch(rotation)
+            {
+                case RSSE2.Rotation.RollLeft:
+                    rot = Matrix4.CreateFromAxisAngle(direction, -angle / 180 * MathHelper.Pi);
+                    break;
+                case RSSE2.Rotation.RollRight:
+                    rot = Matrix4.CreateFromAxisAngle(direction, angle / 180 * MathHelper.Pi);
+                    break;
+                case Rotation.YawLeft:
+                    rot = Matrix4.CreateFromAxisAngle(top, -angle / 180 * MathHelper.Pi);
+                    break;
+                case Rotation.YawRight:
+                    rot = Matrix4.CreateFromAxisAngle(top, angle / 180 * MathHelper.Pi);
+                    break;
+                case Rotation.PitchUp:
+                    rot = Matrix4.CreateFromAxisAngle(OpenTK.Vector3.Cross(top, direction), -angle / 180 * MathHelper.Pi);
+                    break;
+                case Rotation.PitchDown:
+                    rot = Matrix4.CreateFromAxisAngle(OpenTK.Vector3.Cross(top, direction), angle / 180 * MathHelper.Pi);
+                    break;
+                default:
+                    rot = Matrix4.Identity;
+                    break;
+            }
+            direction = new OpenTK.Vector3(new Vector4(direction) * rot);
+            direction.Normalize();
+
+            top = new OpenTK.Vector3(new Vector4(top) * rot);
+            top.Normalize();
+
+            Paint();
         }
     }
 }

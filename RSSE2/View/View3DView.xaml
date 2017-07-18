@@ -5,7 +5,109 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <WindowsFormsHost x:Name="HostControl" Loaded="HostControl_Loaded" >
-    </WindowsFormsHost> 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <DockPanel>
+        <WindowsFormsHost x:Name="HostControl" Loaded="HostControl_Loaded" DockPanel.Dock="Top" Width="800" Height="600"/>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Left" HorizontalAlignment="Left" Width="320">
+                <Label DockPanel.Dock="Top">Translation</Label>
+                <Grid DockPanel.Dock="Top" Height="40">
+                    <RepeatButton Height="30" Width="60" Margin="95,5,165,5" 
+                                  Command="{Binding TranslateCommand}" Delay="500" Interval="100">
+                        <RepeatButton.CommandParameter>
+                            <local:Translation>Forward</local:Translation>
+                        </RepeatButton.CommandParameter>
+                        Forward
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="250,5,10,5" 
+                                  Command="{Binding TranslateCommand}" Delay="500" Interval="100">
+                        <RepeatButton.CommandParameter>
+                            <local:Translation>Up</local:Translation>
+                        </RepeatButton.CommandParameter>
+                        Up
+                    </RepeatButton>
+                </Grid>
+                <Grid DockPanel.Dock="Top" Height="40">
+                    <RepeatButton Height="30" Width="60" Margin="30,5,230,5" 
+                                  Command="{Binding TranslateCommand}" Delay="500" Interval="100">
+                        <RepeatButton.CommandParameter>
+                            <local:Translation>Left</local:Translation>
+                        </RepeatButton.CommandParameter>
+                        Left
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="95,5,165,5" 
+                                  Command="{Binding TranslateCommand}" Delay="500" Interval="100">
+                        <RepeatButton.CommandParameter>
+                            <local:Translation>Backward</local:Translation>
+                        </RepeatButton.CommandParameter>
+                        Backward
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="160,5,100,5"
+                                  Command="{Binding TranslateCommand}" Delay="500" Interval="100">
+                        <RepeatButton.CommandParameter>
+                            <local:Translation>Right</local:Translation>
+                        </RepeatButton.CommandParameter>
+                        Right
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="250,5,10,5" 
+                                  Command="{Binding TranslateCommand}" Delay="500" Interval="100">
+                        <RepeatButton.CommandParameter>
+                            <local:Translation>Down</local:Translation>
+                        </RepeatButton.CommandParameter>
+                        Down
+                    </RepeatButton>
+                </Grid>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Width="250">
+                <Label DockPanel.Dock="Top">Rotation</Label>
+                <Grid DockPanel.Dock="Top" Height="40">
+                    <RepeatButton Height="30" Width="60" Margin="30,5,160,5" 
+                                  Command="{Binding RotateCommand}" Delay="500" Interval="25">
+                        <RepeatButton.CommandParameter>
+                            <local:Rotation>RollLeft</local:Rotation>
+                        </RepeatButton.CommandParameter>
+                        Roll Left
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="95,5" 
+                                  Command="{Binding RotateCommand}" Delay="500" Interval="25">
+                        <RepeatButton.CommandParameter>
+                            <local:Rotation>PitchUp</local:Rotation>
+                        </RepeatButton.CommandParameter> 
+                        Pitch Up
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="160,5,30,5" 
+                                  Command="{Binding RotateCommand}" Delay="500" Interval="25">
+                        <RepeatButton.CommandParameter>
+                            <local:Rotation>RollRight</local:Rotation>
+                        </RepeatButton.CommandParameter> 
+                        Roll Right
+                    </RepeatButton>
+                </Grid>
+                <Grid DockPanel.Dock="Top" Height="40">
+                    <RepeatButton Height="30" Width="60" Margin="30,5,160,5" 
+                                  Command="{Binding RotateCommand}" Delay="500" Interval="25">
+                        <RepeatButton.CommandParameter>
+                            <local:Rotation>YawLeft</local:Rotation>
+                        </RepeatButton.CommandParameter> 
+                        Yaw Left
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="95,5" 
+                                  Command="{Binding RotateCommand}" Delay="500" Interval="25">
+                        <RepeatButton.CommandParameter>
+                            <local:Rotation>PitchDown</local:Rotation>
+                        </RepeatButton.CommandParameter> 
+                        Pitch Down
+                    </RepeatButton>
+                    <RepeatButton Height="30" Width="60" Margin="160,5,30,5" 
+                                  Command="{Binding RotateCommand}" Delay="500" Interval="25">
+                        <RepeatButton.CommandParameter>
+                            <local:Rotation>YawRight</local:Rotation>
+                        </RepeatButton.CommandParameter>
+                        Yaw Right
+                    </RepeatButton>
+                </Grid>
+            </StackPanel>
+        </DockPanel>
+    </DockPanel>
+
 </UserControl>

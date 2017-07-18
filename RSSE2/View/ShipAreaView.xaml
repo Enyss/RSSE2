@@ -12,7 +12,7 @@
         <local:PartView DockPanel.Dock="Right" HorizontalAlignment="Right" Width="320" DataContext="{Binding ElementName=PartTree, Path=SelectedPart}" Margin="5"/>
         <DockPanel Margin="5">
             <Label DockPanel.Dock="Top">3D View</Label>
-            <local:View3DView DataContext="{Binding scene}" />
+            <local:View3DView DataContext="{Binding Scene}" />
         </DockPanel>
     </DockPanel>
 </UserControl>

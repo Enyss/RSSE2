@@ -246,6 +246,9 @@
     <Compile Include="View\Part\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\View3DViewModel.cs">
+      <DependentUpon>View3DView.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\View3DView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

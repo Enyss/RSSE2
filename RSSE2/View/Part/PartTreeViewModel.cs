@@ -15,9 +15,12 @@ namespace RSSE2
         private ICommand _addPartCommand;
         private ICommand _removePartCommand;
 
+        public View3DViewModel Scene { get; set; }
+
         public PartTreeViewModel()
         {
             Parts = new ObservableCollection<PartTreeNodeViewModel>();
+            Scene = new View3DViewModel();
         }
 
         #region AddPart Command
