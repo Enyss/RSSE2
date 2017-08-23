@@ -24,8 +24,7 @@ namespace RSSE2
             if (shader.ContainsKey(name))
                 return;
 
-            string filename = Application.Instance.Settings.RSFolder +
-                @"Shaders\rsGeneral\" + name + ".shader";
+            string filename = "test.shader"; //Application.Instance.Settings.RSFolder + @"Shaders\rsGeneral\" + name + ".shader";
             List<string> file = File.ReadAllLines(filename).ToList();
 
             shader.Add(name, GL.CreateProgram());

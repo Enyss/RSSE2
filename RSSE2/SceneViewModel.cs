@@ -31,7 +31,7 @@ namespace RSSE2
 
         public void LoadScene()
         {
-            IsLoaded = Loading();//await Task<bool>.Factory.StartNew(Loading);
+            IsLoaded = Loading();
         }
 
         public bool Loading()
@@ -39,7 +39,14 @@ namespace RSSE2
             List<Part> parts = new List<Part>(scene.Keys);
             foreach (Part part in parts)
             {
-                scene[part] = new RSSE2.Backend.Model((Model)part.components["Model"]);
+                if (part.components.ContainsKey("Model"))
+                {
+                    scene[part] = new RSSE2.Backend.Model((Model)part.components["Model"]);
+                }
+                else
+                {
+                    scene[part] = null;
+                }
             }
             return true;
         }

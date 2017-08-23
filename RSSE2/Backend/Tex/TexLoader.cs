@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK.Graphics.OpenGL4;
-
+using System.IO;
 
 namespace RSSE2.Backend
 {
@@ -64,7 +64,17 @@ namespace RSSE2.Backend
 
             if (!textures.ContainsKey(name))
             {
-                string filename = Application.Instance.CurrentlyLoaded.Folder + name + ".tex";
+                string filename = "";
+                if ( File.Exists(Application.Instance.CurrentlyLoaded.Folder + name + ".tex") )
+                {
+                    filename = Application.Instance.CurrentlyLoaded.Folder + name + ".tex";
+                }
+                else if ( File.Exists(Application.Instance.Settings.RSFolder 
+                    + @"Mod\RogSysCM\Shared\Art\Maps\" + name + ".tex") )
+                {
+                    filename = Application.Instance.Settings.RSFolder
+                    + @"Mod\RogSysCM\Shared\Art\Maps\" + name + ".tex";
+                }
                 textures[name] = new Tex(filename);
             }
         }

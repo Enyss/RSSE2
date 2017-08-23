@@ -42,7 +42,7 @@ namespace RSSE2
         {
             // Load the application settings
             Settings = new Settings();
-            Settings.SetRSFolder(""); //@"C:\Program Files (x86)\Steam\steamapps\common\Rogue System\");
+            Settings.SetRSFolder(@"C:\Program Files (x86)\Steam\steamapps\common\Rogue System\");
 
             // Setup the lua engine
             Lua = new Script(CoreModules.Preset_Complete);

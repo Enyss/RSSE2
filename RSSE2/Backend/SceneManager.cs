@@ -80,12 +80,15 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
 
             foreach ( KeyValuePair<Part,Model> pair in CurrentScene.scene )
             {
-                Matrix4 rotX = Matrix4.CreateRotationX(-(float)pair.Key.rotation.x / 180 * MathHelper.Pi);
-                Matrix4 rotY = Matrix4.CreateRotationY(-(float)pair.Key.rotation.z / 180 * MathHelper.Pi);
-                Matrix4 rotZ = Matrix4.CreateRotationZ((float)pair.Key.rotation.y / 180 * MathHelper.Pi);
-                Matrix4 trans = Matrix4.CreateTranslation((float)pair.Key.position.x, (float)pair.Key.position.z, (float)pair.Key.position.y);
-                Matrix4 T = rotZ * rotX * rotY * trans;
-                pair.Value.Draw(T*VP);
+                if (pair.Value != null)
+                {
+                    Matrix4 rotX = Matrix4.CreateRotationX(-(float)pair.Key.rotation.x / 180 * MathHelper.Pi);
+                    Matrix4 rotY = Matrix4.CreateRotationY(-(float)pair.Key.rotation.z / 180 * MathHelper.Pi);
+                    Matrix4 rotZ = Matrix4.CreateRotationZ((float)pair.Key.rotation.y / 180 * MathHelper.Pi);
+                    Matrix4 trans = Matrix4.CreateTranslation((float)pair.Key.position.x, (float)pair.Key.position.z, (float)pair.Key.position.y);
+                    Matrix4 T = rotZ * rotX * rotY * trans;
+                    pair.Value.Draw(T * VP);
+                }
             }
 
             glControl.SwapBuffers();

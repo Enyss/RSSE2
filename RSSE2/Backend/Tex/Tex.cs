@@ -24,6 +24,7 @@ namespace RSSE2.Backend
         
         public Tex(string filename)
         {
+
             BinaryReader b = new BinaryReader(File.Open(filename, FileMode.Open));
 
             // Header
