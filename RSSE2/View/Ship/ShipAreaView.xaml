@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="RSSE2.ShipAreaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:opentk="clr-namespace:OpenTK;assembly=OpenGL.Net.WinForms"
+             xmlns:local="clr-namespace:RSSE2"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1980">
+    <DockPanel>
+        <local:PartTreeView DockPanel.Dock="Left" DataContext="{Binding}" x:Name="PartTree"/>
+        <local:PartView DockPanel.Dock="Right" HorizontalAlignment="Right" Width="320" DataContext="{Binding ElementName=PartTree, Path=SelectedPart}" Margin="5"/>
+        <DockPanel Margin="5">
+            <Label DockPanel.Dock="Top">3D View</Label>
+            <local:View3DView DataContext="{Binding Scene}" />
+        </DockPanel>
+    </DockPanel>
+</UserControl>

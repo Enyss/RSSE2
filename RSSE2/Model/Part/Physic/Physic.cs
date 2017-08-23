@@ -14,9 +14,66 @@ namespace RSSE2
         public double mass;
         public double friction;
 
+        public Physic()
+        {
+            shape = null;
+        }
+
+        public Physic(Table table)
+        {
+            collision = table["useCollision"] > 0.5;
+
+            if (collision)
+            {
+                int s = (int)table["CollisionShape"];
+                /* --1=Dynamic Convex Decomp Mesh, 2 = Convex Hull, 3=Static Mesh, 4=Box, 5=Cone, 6=Cylinder, 7=Sphere, +100-do not autogen collision */
+                switch (s % 100)
+                {
+                    case 1:
+                        shape = new CollisionDynamicMesh();
+                        break;
+                    case 2:
+                        shape = new CollisionConvexHull();
+                        break;
+                    case 3:
+                        shape = new CollisionMesh();
+                        break;
+                    case 4:
+                        shape = new CollisionBox(table["CollShapeSize"]);
+                        break;
+                    case 5:
+                        shape = new CollisionCone(table["CollShapeSize"]);
+                        break;
+                    case 6:
+                        shape = new CollisionCylinder(table["CollShapeSize"]);
+                        break;
+                    case 7:
+                        shape = new CollisionSphere(table["CollShapeSize"]);
+                        break;
+                }
+                shape.autogen = s < 100;
+            }
+            else
+            {
+                shape = new CollisionBox();
+                shape.autogen = false;
+            }
+
+            mass = table["Mass"];
+            friction = table["Friction"];
+        }
+
+
+        public override void ToTable(Table table)
+        {
+            throw new NotImplementedException();
+        }
+
         public override ComponentViewModel CreateViewModel()
         {
             return new PhysicViewModel(this);
         }
+
+
     }
 }

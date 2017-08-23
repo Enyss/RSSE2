@@ -23,16 +23,48 @@ namespace RSSE2
             }
         }
 
+        private Vector3ViewModel position;
+        public Vector3ViewModel Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Vector3ViewModel rotation;
+        public Vector3ViewModel Rotation
+        {
+            get { return rotation; }
+            set
+            {
+                rotation = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<ComponentViewModel> Components { get; set; }
 
         public PartViewModel(Part part)
         {
+            /* set the Properties */
             _part = part;
+            position = new Vector3ViewModel(_part.position);
+            rotation = new Vector3ViewModel(_part.rotation);
+
+            /* Setup the update the 3D view on position/rotation change */
+            position.PropertyChanged += (sender, args) => { Backend.SceneManager.Instance.Paint(); };
+            rotation.PropertyChanged += (sender, args) => { Backend.SceneManager.Instance.Paint(); };
+
+            /* Create the ComponentViewModels */
             Components = new ObservableCollection<ComponentViewModel>();
-            foreach (Component component in _part.components)
+            foreach (Component component in _part.components.Values)
             {
                 Components.Add(component.CreateViewModel());
             }
+
         }
         
         private ICommand _removeComponentCommand;
@@ -58,10 +90,14 @@ namespace RSSE2
             return true;
         }
 
-        public void RemoveComponent(ComponentViewModel Component)
+        public void RemoveComponent(ComponentViewModel component)
         {
-            Components.Remove(Component);
-            Part.components.Remove(Component.Component);
+            Components.Remove(component);
+
+            // find the key
+            string key = Part.components.FirstOrDefault(x => x.Value == component.Component).Key;
+            // remove
+            Part.components.Remove(key);
         }
 
         #endregion

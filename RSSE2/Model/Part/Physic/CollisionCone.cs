@@ -24,6 +24,12 @@ namespace RSSE2
             h = height;
         }
 
+        public CollisionCone(Table table)
+        {
+            h = table["x"];
+            r = table["y"];
+        }
+
         public override CollisionShapeViewModel CreateViewModel()
         {
             return new CollisionConeViewModel(this);

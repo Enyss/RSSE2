@@ -13,6 +13,22 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\RSSE2\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +49,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D1DC0693F7CB6FE67D5FC514712C25B3D52B8093</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>RSSE2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GongSolutions.Wpf.DragDrop, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\gong-wpf-dragdrop.1.1.0\lib\net45\GongSolutions.Wpf.DragDrop.dll</HintPath>
@@ -40,14 +68,11 @@
     <Reference Include="MoonSharp.Interpreter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=921e73ce94aa17f8, processorArchitecture=MSIL">
       <HintPath>..\packages\MoonSharp.2.0.0.0\lib\net40-client\MoonSharp.Interpreter.dll</HintPath>
     </Reference>
-    <Reference Include="OpenGL.Net, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenGL.Net.0.5.1\lib\net35\OpenGL.Net.dll</HintPath>
+    <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
     </Reference>
-    <Reference Include="OpenGL.Net.WinForms, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenGL.Net.WinForms.0.5.1\lib\net35\OpenGL.Net.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK.GLControl, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.GLControl.3.0.0-pre\lib\net20\OpenTK.GLControl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -66,74 +91,154 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Backend\Mdl\Mdl.cs" />
+    <Compile Include="Backend\Mdl\MdlLoader.cs" />
+    <Compile Include="Backend\Model.cs" />
+    <Compile Include="Backend\SceneManager.cs" />
+    <Compile Include="Backend\Shader.cs" />
+    <Compile Include="Backend\Shader\ShaderLoader.cs" />
+    <Compile Include="Backend\Tex\TexLoader.cs" />
+    <Compile Include="Backend\Tex\Tex.cs" />
+    <Compile Include="Backend\Vertex.cs" />
+    <Compile Include="Backend\VertexAttribute.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Utils\ObservableDictionnary.cs" />
+    <Compile Include="SceneViewModel.cs" />
+    <Compile Include="View\Menu\MainMenuView.xaml.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu\MainMenuViewModel.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialEditorView.xaml.cs">
+      <DependentUpon>MaterialEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialView.xaml.cs">
+      <DependentUpon>MaterialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Part\Model\ColorRGBA.cs" />
+    <Compile Include="View\Ship\Part\Model\ColorRGBAView.xaml.cs">
+      <DependentUpon>ColorRGBAView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\Part\Model\ColorRGBAViewModel.cs">
+      <DependentUpon>ColorRGBAView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Part\Model\Material.cs" />
+    <Compile Include="Model\Part\Light\ColorRGB.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="View\View3DView.xaml.cs">
+      <DependentUpon>View3DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipAreaView.xaml.cs">
+      <DependentUpon>ShipAreaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipView.xaml.cs">
+      <DependentUpon>ShipView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipViewModel.cs">
+      <DependentUpon>ShipView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\Part\Light\LightView.xaml.cs">
+      <DependentUpon>LightView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Part\Light\Light.cs" />
+    <Compile Include="Utils\Table.cs" />
     <Compile Include="Utils\DialogCloser.cs" />
-    <Compile Include="View\Part\PartNameEditorView.xaml.cs">
+    <Compile Include="Model\Vector3.cs" />
+    <Compile Include="View\Ship\Part\Light\LightViewModel.cs">
+      <DependentUpon>LightView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Vector3View.xaml.cs">
+      <DependentUpon>Vector3View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Vector3ViewModel.cs">
+      <DependentUpon>Vector3View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\Part\PartNameEditorView.xaml.cs">
       <DependentUpon>PartNameEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartNameEditorViewModel.cs">
+    <Compile Include="View\Ship\Part\PartNameEditorViewModel.cs">
       <DependentUpon>PartNameEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartTreeViewModel.cs">
+    <Compile Include="View\Ship\Part\PartTreeViewModel.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartTreeNodeViewModel.cs" />
-    <Compile Include="View\Part\PartTreeView.xaml.cs">
+    <Compile Include="View\Ship\Part\PartTreeNodeViewModel.cs" />
+    <Compile Include="View\Ship\Part\PartTreeView.xaml.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Ship.cs" />
-    <Compile Include="View\Part\Physic\CollisionShapeViewModel.cs" />
-    <Compile Include="View\Part\Physic\CollisionMeshView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionShapeViewModel.cs" />
+    <Compile Include="View\Ship\Part\Physic\CollisionMeshView.xaml.cs">
       <DependentUpon>CollisionMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionMeshViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionMeshViewModel.cs">
       <DependentUpon>CollisionMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConvexHullView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConvexHullView.xaml.cs">
       <DependentUpon>CollisionConvexHullView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConvexHullViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConvexHullViewModel.cs">
       <DependentUpon>CollisionConvexHullView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionSphereView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionSphereView.xaml.cs">
       <DependentUpon>CollisionSphereView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionSphereViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionSphereViewModel.cs">
       <DependentUpon>CollisionSphereView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionDynamicMeshView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionDynamicMeshView.xaml.cs">
       <DependentUpon>CollisionDynamicMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionDynamicMeshViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionDynamicMeshViewModel.cs">
       <DependentUpon>CollisionDynamicMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionCylinderView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionCylinderView.xaml.cs">
       <DependentUpon>CollisionCylinderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionCylinderViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionCylinderViewModel.cs">
       <DependentUpon>CollisionCylinderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConeView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConeView.xaml.cs">
       <DependentUpon>CollisionConeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConeViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConeViewModel.cs">
       <DependentUpon>CollisionConeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionBoxView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionBoxView.xaml.cs">
       <DependentUpon>CollisionBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionBoxViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionBoxViewModel.cs">
       <DependentUpon>CollisionBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\PhysicView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\PhysicView.xaml.cs">
       <DependentUpon>PhysicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\PhysicViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\PhysicViewModel.cs">
       <DependentUpon>PhysicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Part\Physic\CollisionBox.cs" />
@@ -145,28 +250,28 @@
     <Compile Include="Model\Part\Physic\CollisionSphere.cs" />
     <Compile Include="Model\Part\Physic\CollisionDynamicMesh.cs" />
     <Compile Include="Model\Part\Physic\Physic.cs" />
-    <Compile Include="View\Part\ComponentViewModel.cs" />
+    <Compile Include="View\Ship\Part\ComponentViewModel.cs" />
     <Compile Include="Model\Part\Component.cs" />
     <Compile Include="Model\Part\Part.cs" />
-    <Compile Include="View\Part\PartView.xaml.cs">
+    <Compile Include="View\Ship\Part\PartView.xaml.cs">
       <DependentUpon>PartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartViewModel.cs">
+    <Compile Include="View\Ship\Part\PartViewModel.cs">
       <DependentUpon>PartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\MeshView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\MeshView.xaml.cs">
       <DependentUpon>MeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\MeshViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\MeshViewModel.cs">
       <DependentUpon>MeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\ShaderView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\ShaderView.xaml.cs">
       <DependentUpon>ShaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\ShaderViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\ShaderViewModel.cs">
       <DependentUpon>ShaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\ModelView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\ModelView.xaml.cs">
       <DependentUpon>ModelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Part\Model\Mesh.cs" />
@@ -175,58 +280,97 @@
     <Compile Include="Model\Part\Model\Shader.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
-    <Compile Include="View\Part\Model\ModelViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\ModelViewModel.cs">
       <DependentUpon>ModelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TexturesView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\TexturesView.xaml.cs">
       <DependentUpon>TexturesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TexturesViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\TexturesViewModel.cs">
       <DependentUpon>TexturesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TextureView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\TextureView.xaml.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TextureViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\Part\PartNameEditorView.xaml">
+    <Compile Include="View\View3DViewModel.cs">
+      <DependentUpon>View3DView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Menu\MainMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\PartTreeView.xaml">
+    <Page Include="MaterialEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionMeshView.xaml">
+    <Page Include="MaterialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionConvexHullView.xaml">
+    <Page Include="View\Ship\Part\Model\ColorRGBAView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionSphereView.xaml">
+    <Page Include="View\View3DView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionDynamicMeshView.xaml">
+    <Page Include="View\Ship\ShipAreaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionCylinderView.xaml">
+    <Page Include="View\Ship\ShipView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionConeView.xaml">
+    <Page Include="View\Ship\Part\Light\LightView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionBoxView.xaml">
+    <Page Include="View\Vector3View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\PhysicView.xaml">
+    <Page Include="View\Ship\Part\PartNameEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\PartTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionMeshView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionConvexHullView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionSphereView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionDynamicMeshView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionCylinderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionConeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\CollisionBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Physic\PhysicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,27 +386,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Part\PartView.xaml">
+    <Page Include="View\Ship\Part\PartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\MeshView.xaml">
+    <Page Include="View\Ship\Part\Model\MeshView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\ShaderView.xaml">
+    <Page Include="View\Ship\Part\Model\ShaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\ModelView.xaml">
+    <Page Include="View\Ship\Part\Model\ModelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\TexturesView.xaml">
+    <Page Include="View\Ship\Part\Model\TexturesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\TextureView.xaml">
+    <Page Include="View\Ship\Part\Model\TextureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,6 +429,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="OpenTK.dll.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -292,10 +437,25 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="RSSE2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Backend\Material\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,11 +6,14 @@
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="300">
-    <Expander Width="300" Header="Model">
-        <StackPanel>
-            <local:MeshView DataContext="{Binding Mesh}" />
-            <local:ShaderView DataContext="{Binding Shader}" />
-            <local:TexturesView DataContext="{Binding Textures}" />
-        </StackPanel>
-    </Expander>
+    <StackPanel>
+        <Expander Width="300" Header="Model">
+            <StackPanel>
+                <local:MeshView DataContext="{Binding Mesh}" />
+                <local:ShaderView DataContext="{Binding Shader}" />
+                <local:TexturesView DataContext="{Binding Textures}" />
+            </StackPanel>
+        </Expander>
+        <Separator/>
+    </StackPanel>
 </UserControl>

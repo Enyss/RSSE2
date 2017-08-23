@@ -16,6 +16,11 @@ namespace RSSE2
             r = 1.0;
         }
 
+        public CollisionSphere( Table table )
+        {
+            r = table["x"];
+        }
+
         public CollisionSphere(double radius)
         {
             r = radius;

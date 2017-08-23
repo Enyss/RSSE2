@@ -21,6 +21,7 @@
                     <TextBlock Text="{Binding Name}" Tag="{Binding DataContext, ElementName=Context}">
                         <TextBlock.ContextMenu>
                             <ContextMenu>
+                                <MenuItem Header="Hide" />
                                 <MenuItem Header="Rename" Command="{Binding RenamePartCommand}"/>
                                 <MenuItem Header="Delete" 
                                           Command="{Binding PlacementTarget.Tag.RemovePartCommand, 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,28 +13,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+
 using OpenTK;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using System.IO;
 
 namespace RSSE2
 {
     /// <summary>
-
-    /// Interaction logic for MainWindow.xaml
-
+    /// Logique d'interaction pour View3DView.xaml
     /// </summary>
-
-    public partial class MainWindow : Window
-    {
-        public Application App { get { return Application.Instance; } }
-
-        public MainWindow()
+    public partial class View3DView : System.Windows.Controls.UserControl
+    {        
+        public View3DView()
         {
             InitializeComponent();
-            this.DataContext = this;
+        }
 
-            App.CurrentlyLoaded = new MainMenuViewModel();
+        public void HostControl_Loaded(object sender, EventArgs e)
+        {
+            ((WindowsFormsHost)sender).Child = RSSE2.Backend.SceneManager.Instance.Control;
+            RSSE2.Backend.SceneManager.Instance.Control.MakeCurrent();
         }
     }
 }

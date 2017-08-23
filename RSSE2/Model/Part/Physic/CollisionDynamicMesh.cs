@@ -11,6 +11,10 @@ namespace RSSE2
 
         public override string Name { get { return "Dynamic Convex Decomp Mesh"; } }
 
+        public CollisionDynamicMesh()
+        {
+        }
+
         public override CollisionShapeViewModel CreateViewModel()
         {
             return new CollisionDynamicMeshViewModel(this);
