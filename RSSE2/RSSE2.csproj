@@ -98,29 +98,50 @@
     <Compile Include="Backend\Vertex.cs" />
     <Compile Include="Backend\VertexAttribute.cs" />
     <Compile Include="Application.cs" />
-    <Compile Include="Model\Part\Light\Color.cs" />
+    <Compile Include="Utils\ObservableDictionnary.cs" />
+    <Compile Include="SceneViewModel.cs" />
+    <Compile Include="View\Menu\MainMenuView.xaml.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu\MainMenuViewModel.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialEditorView.xaml.cs">
+      <DependentUpon>MaterialEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialView.xaml.cs">
+      <DependentUpon>MaterialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Part\Model\ColorRGBA.cs" />
+    <Compile Include="View\Ship\Part\Model\ColorRGBAView.xaml.cs">
+      <DependentUpon>ColorRGBAView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\Part\Model\ColorRGBAViewModel.cs">
+      <DependentUpon>ColorRGBAView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Part\Model\Material.cs" />
+    <Compile Include="Model\Part\Light\ColorRGB.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="View\View3DView.xaml.cs">
       <DependentUpon>View3DView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShipAreaView.xaml.cs">
+    <Compile Include="View\Ship\ShipAreaView.xaml.cs">
       <DependentUpon>ShipAreaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShipView.xaml.cs">
+    <Compile Include="View\Ship\ShipView.xaml.cs">
       <DependentUpon>ShipView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShipViewModel.cs">
+    <Compile Include="View\Ship\ShipViewModel.cs">
       <DependentUpon>ShipView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Light\LightView.xaml.cs">
+    <Compile Include="View\Ship\Part\Light\LightView.xaml.cs">
       <DependentUpon>LightView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Part\Light\Light.cs" />
-    <Compile Include="Backend\RogLoader.cs" />
     <Compile Include="Utils\Table.cs" />
     <Compile Include="Utils\DialogCloser.cs" />
     <Compile Include="Model\Vector3.cs" />
-    <Compile Include="View\Part\Light\LightViewModel.cs">
+    <Compile Include="View\Ship\Part\Light\LightViewModel.cs">
       <DependentUpon>LightView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Vector3View.xaml.cs">
@@ -129,67 +150,67 @@
     <Compile Include="View\Vector3ViewModel.cs">
       <DependentUpon>Vector3View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartNameEditorView.xaml.cs">
+    <Compile Include="View\Ship\Part\PartNameEditorView.xaml.cs">
       <DependentUpon>PartNameEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartNameEditorViewModel.cs">
+    <Compile Include="View\Ship\Part\PartNameEditorViewModel.cs">
       <DependentUpon>PartNameEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartTreeViewModel.cs">
+    <Compile Include="View\Ship\Part\PartTreeViewModel.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartTreeNodeViewModel.cs" />
-    <Compile Include="View\Part\PartTreeView.xaml.cs">
+    <Compile Include="View\Ship\Part\PartTreeNodeViewModel.cs" />
+    <Compile Include="View\Ship\Part\PartTreeView.xaml.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Ship.cs" />
-    <Compile Include="View\Part\Physic\CollisionShapeViewModel.cs" />
-    <Compile Include="View\Part\Physic\CollisionMeshView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionShapeViewModel.cs" />
+    <Compile Include="View\Ship\Part\Physic\CollisionMeshView.xaml.cs">
       <DependentUpon>CollisionMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionMeshViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionMeshViewModel.cs">
       <DependentUpon>CollisionMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConvexHullView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConvexHullView.xaml.cs">
       <DependentUpon>CollisionConvexHullView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConvexHullViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConvexHullViewModel.cs">
       <DependentUpon>CollisionConvexHullView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionSphereView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionSphereView.xaml.cs">
       <DependentUpon>CollisionSphereView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionSphereViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionSphereViewModel.cs">
       <DependentUpon>CollisionSphereView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionDynamicMeshView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionDynamicMeshView.xaml.cs">
       <DependentUpon>CollisionDynamicMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionDynamicMeshViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionDynamicMeshViewModel.cs">
       <DependentUpon>CollisionDynamicMeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionCylinderView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionCylinderView.xaml.cs">
       <DependentUpon>CollisionCylinderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionCylinderViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionCylinderViewModel.cs">
       <DependentUpon>CollisionCylinderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConeView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConeView.xaml.cs">
       <DependentUpon>CollisionConeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionConeViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionConeViewModel.cs">
       <DependentUpon>CollisionConeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionBoxView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionBoxView.xaml.cs">
       <DependentUpon>CollisionBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\CollisionBoxViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\CollisionBoxViewModel.cs">
       <DependentUpon>CollisionBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\PhysicView.xaml.cs">
+    <Compile Include="View\Ship\Part\Physic\PhysicView.xaml.cs">
       <DependentUpon>PhysicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Physic\PhysicViewModel.cs">
+    <Compile Include="View\Ship\Part\Physic\PhysicViewModel.cs">
       <DependentUpon>PhysicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Part\Physic\CollisionBox.cs" />
@@ -201,28 +222,28 @@
     <Compile Include="Model\Part\Physic\CollisionSphere.cs" />
     <Compile Include="Model\Part\Physic\CollisionDynamicMesh.cs" />
     <Compile Include="Model\Part\Physic\Physic.cs" />
-    <Compile Include="View\Part\ComponentViewModel.cs" />
+    <Compile Include="View\Ship\Part\ComponentViewModel.cs" />
     <Compile Include="Model\Part\Component.cs" />
     <Compile Include="Model\Part\Part.cs" />
-    <Compile Include="View\Part\PartView.xaml.cs">
+    <Compile Include="View\Ship\Part\PartView.xaml.cs">
       <DependentUpon>PartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\PartViewModel.cs">
+    <Compile Include="View\Ship\Part\PartViewModel.cs">
       <DependentUpon>PartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\MeshView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\MeshView.xaml.cs">
       <DependentUpon>MeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\MeshViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\MeshViewModel.cs">
       <DependentUpon>MeshView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\ShaderView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\ShaderView.xaml.cs">
       <DependentUpon>ShaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\ShaderViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\ShaderViewModel.cs">
       <DependentUpon>ShaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\ModelView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\ModelView.xaml.cs">
       <DependentUpon>ModelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Part\Model\Mesh.cs" />
@@ -231,37 +252,53 @@
     <Compile Include="Model\Part\Model\Shader.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
-    <Compile Include="View\Part\Model\ModelViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\ModelViewModel.cs">
       <DependentUpon>ModelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TexturesView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\TexturesView.xaml.cs">
       <DependentUpon>TexturesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TexturesViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\TexturesViewModel.cs">
       <DependentUpon>TexturesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TextureView.xaml.cs">
+    <Compile Include="View\Ship\Part\Model\TextureView.xaml.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Part\Model\TextureViewModel.cs">
+    <Compile Include="View\Ship\Part\Model\TextureViewModel.cs">
       <DependentUpon>TextureView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\View3DViewModel.cs">
       <DependentUpon>View3DView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Menu\MainMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaterialEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaterialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Model\ColorRGBAView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\View3DView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ShipAreaView.xaml">
+    <Page Include="View\Ship\ShipAreaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ShipView.xaml">
+    <Page Include="View\Ship\ShipView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Light\LightView.xaml">
+    <Page Include="View\Ship\Part\Light\LightView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,43 +306,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\PartNameEditorView.xaml">
+    <Page Include="View\Ship\Part\PartNameEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\PartTreeView.xaml">
+    <Page Include="View\Ship\Part\PartTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionMeshView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionMeshView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionConvexHullView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionConvexHullView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionSphereView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionSphereView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionDynamicMeshView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionDynamicMeshView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionCylinderView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionCylinderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionConeView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionConeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\CollisionBoxView.xaml">
+    <Page Include="View\Ship\Part\Physic\CollisionBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Physic\PhysicView.xaml">
+    <Page Include="View\Ship\Part\Physic\PhysicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,27 +358,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Part\PartView.xaml">
+    <Page Include="View\Ship\Part\PartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\MeshView.xaml">
+    <Page Include="View\Ship\Part\Model\MeshView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\ShaderView.xaml">
+    <Page Include="View\Ship\Part\Model\ShaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\ModelView.xaml">
+    <Page Include="View\Ship\Part\Model\ModelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\TexturesView.xaml">
+    <Page Include="View\Ship\Part\Model\TexturesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Part\Model\TextureView.xaml">
+    <Page Include="View\Ship\Part\Model\TextureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -48,7 +48,7 @@ namespace RSSE2.Backend
 
             try
             {
-                LoadFromFile(Application.Instance.CurrentShip.Folder + name + ".mdl");
+                LoadFromFile(Application.Instance.CurrentlyLoaded.Folder + name + ".mdl");
             }
             catch
             {

@@ -64,7 +64,7 @@ namespace RSSE2.Backend
 
             if (!textures.ContainsKey(name))
             {
-                string filename = Application.Instance.CurrentShip.Folder + name + ".tex";
+                string filename = Application.Instance.CurrentlyLoaded.Folder + name + ".tex";
                 textures[name] = new Tex(filename);
             }
         }

@@ -11,7 +11,7 @@ namespace RSSE2
 
     public class Light : Component
     {
-        public Color color;
+        public ColorRGB color;
         public LightType type;
         public double range;
         public double intensity;
@@ -24,7 +24,7 @@ namespace RSSE2
             range = table["LightData"]["x"];
             intensity = table["LightData"]["y"];
             spotCone = table["LightData"]["z"];
-            color = new Color(table["LightData"]["color"]);
+            color = new ColorRGB(table["LightData"]["color"]);
             shadowType = (ShadowType)table["ShadowType"];
         }
 

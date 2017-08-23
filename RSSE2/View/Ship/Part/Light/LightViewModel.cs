@@ -20,7 +20,7 @@ namespace RSSE2
             }
             set
             {
-                Model.color = new Color( value.R, value.G, value.B );
+                Model.color = new ColorRGB( value.R, value.G, value.B );
                 OnPropertyChanged();
             }
         }

@@ -51,11 +51,11 @@ namespace RSSE2
             table["Name"] = "NYI";
             table["Shader"] = "NYI";
             table["Textures"] = texture.Count;
-            table["Texture"] = new Table();
+            /*table["Texture"] = new Table();
             for(int i=0; i<texture.Count; i++)
             {
                 table["Texture"]["T"+(i+1)] = "NYI";
-            }
+            }*/
         }
 
         public override ComponentViewModel CreateViewModel()

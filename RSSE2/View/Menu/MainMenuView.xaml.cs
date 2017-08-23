@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RSSE2
 {
     /// <summary>
-    /// Logique d'interaction pour ShipView.xaml
+    /// Logique d'interaction pour MainMenuView.xaml
     /// </summary>
-    public partial class ShipView : UserControl
+    public partial class MainMenuView : UserControl
     {
-        public ShipView()
+        public MainMenuView()
         {
             InitializeComponent();
         }

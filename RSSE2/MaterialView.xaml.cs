@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,28 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using OpenTK;
-using OpenTK.Graphics.OpenGL4;
-using System.IO;
-
 namespace RSSE2
 {
     /// <summary>
-
-    /// Interaction logic for MainWindow.xaml
-
+    /// Logique d'interaction pour MaterialView.xaml
     /// </summary>
-
-    public partial class MainWindow : Window
+    public partial class MaterialView : UserControl
     {
-        public Application App { get { return Application.Instance; } }
-
-        public MainWindow()
+        public MaterialView()
         {
             InitializeComponent();
-            this.DataContext = this;
-
-            App.CurrentlyLoaded = new MainMenuViewModel();
         }
     }
 }

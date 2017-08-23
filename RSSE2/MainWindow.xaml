@@ -6,16 +6,14 @@
         xmlns:local="clr-namespace:RSSE2"
         mc:Ignorable="d"
         Title="RSSE : A Rogue System Ship Editor" Height="900" Width="1600">
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
-            </MenuItem>
-        </Menu>
-        <local:ShipView DataContext="{Binding Ship}"/>
-    </DockPanel>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:MainMenuViewModel}">
+            <local:MainMenuView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:ShipViewModel}">
+            <local:ShipView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <ContentControl Content="{Binding Path=App.CurrentlyLoaded}"/>
 </Window>

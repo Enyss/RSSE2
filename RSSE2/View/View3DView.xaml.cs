@@ -37,8 +37,6 @@ namespace RSSE2
         {
             ((WindowsFormsHost)sender).Child = RSSE2.Backend.SceneManager.Instance.Control;
             RSSE2.Backend.SceneManager.Instance.Control.MakeCurrent();
-
-            RSSE2.Backend.SceneManager.Instance.Paint();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace RSSE2.Backend
         public TexLoader texLoader;
         public MdlLoader mdlLoader;
 
-        public Dictionary<Part, Model> parts;
+        public SceneViewModel CurrentScene { get; set; }
 
         private SceneManager()
         {
@@ -55,29 +55,18 @@ namespace RSSE2.Backend
             texLoader = new TexLoader();
             mdlLoader = new MdlLoader();
 
-            parts = new Dictionary<Part, Model>();
-
             /* Initialize the camera */
             eye = new OpenTK.Vector3(0, 0, 0);
             direction = new OpenTK.Vector3(0, 0, 1);
             top = new OpenTK.Vector3(0, 1, 0);
         }
 
-        public void LoadPart(Part part)
-        {
-            if (parts.ContainsKey(part))
-                return;
-            if (!part.components.ContainsKey("Model"))
-                return;
-
-            parts.Add(part, new Model((RSSE2.Model)part.components["Model"]) );
-            var error = GL.GetError();
-            parts[part].Load();
-        }
-
         public void Paint(object sender, PaintEventArgs e)
         {
-            Paint();
+            if (CurrentScene != null && CurrentScene.IsLoaded)
+            {
+                Paint();
+            }
         }
 
         public void Paint()
@@ -89,7 +78,7 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
 
             Matrix4 VP = Matrix4.LookAt(eye,eye+direction,top)*P;
 
-            foreach ( KeyValuePair<Part,Model> pair in parts )
+            foreach ( KeyValuePair<Part,Model> pair in CurrentScene.scene )
             {
                 Matrix4 rotX = Matrix4.CreateRotationX(-(float)pair.Key.rotation.x / 180 * MathHelper.Pi);
                 Matrix4 rotY = Matrix4.CreateRotationY(-(float)pair.Key.rotation.z / 180 * MathHelper.Pi);
@@ -141,10 +130,10 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
                     rot = Matrix4.CreateFromAxisAngle(direction, angle / 180 * MathHelper.Pi);
                     break;
                 case Rotation.YawLeft:
-                    rot = Matrix4.CreateFromAxisAngle(top, -angle / 180 * MathHelper.Pi);
+                    rot = Matrix4.CreateFromAxisAngle(top, angle / 180 * MathHelper.Pi);
                     break;
                 case Rotation.YawRight:
-                    rot = Matrix4.CreateFromAxisAngle(top, angle / 180 * MathHelper.Pi);
+                    rot = Matrix4.CreateFromAxisAngle(top, -angle / 180 * MathHelper.Pi);
                     break;
                 case Rotation.PitchUp:
                     rot = Matrix4.CreateFromAxisAngle(OpenTK.Vector3.Cross(top, direction), -angle / 180 * MathHelper.Pi);

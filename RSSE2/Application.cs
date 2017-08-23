@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MoonSharp.Interpreter;
+using System.IO;
+
 namespace RSSE2
 {
-    public class Application
+    public class Application : ObservableObject
     {
         #region Singleton pattern
 
@@ -16,21 +20,32 @@ namespace RSSE2
 
         #endregion
 
-        private Ship currentShip;
-        public Ship CurrentShip { get { return currentShip; } }
+        public Script Lua { get; }
+
+        private dynamic currentlyLoaded;
+        public dynamic CurrentlyLoaded
+        {
+            get
+            {
+                return currentlyLoaded;
+            }
+            set
+            {
+                currentlyLoaded = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Settings Settings { get; }
 
         private Application()
         {
+            // Load the application settings
             Settings = new Settings();
-            Settings.SetRSFolder(@"C:\Program Files (x86)\Steam\steamapps\common\Rogue System\");
-            Backend.SceneManager scene = Backend.SceneManager.Instance;
-        }
+            Settings.SetRSFolder(""); //@"C:\Program Files (x86)\Steam\steamapps\common\Rogue System\");
 
-        public void LoadShip(string name)
-        {
-            RogLoader loader = new RogLoader();
-            currentShip = loader.Load(name);
+            // Setup the lua engine
+            Lua = new Script(CoreModules.Preset_Complete);
         }
     }
 }

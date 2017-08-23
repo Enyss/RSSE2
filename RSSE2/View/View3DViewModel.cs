@@ -13,9 +13,9 @@ namespace RSSE2
 
     public class View3DViewModel
     {
-        #region TranslateCommand 
-        private Backend.SceneManager scene = Backend.SceneManager.Instance;
+        private Backend.SceneManager sceneManager = Backend.SceneManager.Instance;
 
+        #region TranslateCommand 
         private ICommand _translateCommand;
         public ICommand TranslateCommand
         {
@@ -24,7 +24,7 @@ namespace RSSE2
                 if (_translateCommand == null)
                 {
                     _translateCommand = new RelayCommand(
-                        param => scene.TranslateCamera(0.1f,(Translation)param),
+                        param => sceneManager.TranslateCamera(0.1f,(Translation)param),
                         param => true
                     );
                 }
@@ -34,7 +34,6 @@ namespace RSSE2
         #endregion
 
         #region RotateCommand 
-
         private ICommand _rotateCommand;
         public ICommand RotateCommand
         {
@@ -43,14 +42,13 @@ namespace RSSE2
                 if (_rotateCommand == null)
                 {
                     _rotateCommand = new RelayCommand(
-                        param => scene.RotateCamera(1,(Rotation)param),
+                        param => sceneManager.RotateCamera(1,(Rotation)param),
                         param => true
                     );
                 }
                 return _rotateCommand;
             }
         }
-
         #endregion
 
     }
