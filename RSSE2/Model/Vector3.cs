@@ -35,5 +35,10 @@ namespace RSSE2
             y = table["y"];
             z = table["z"];
         }
+
+        internal dynamic ToTable()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

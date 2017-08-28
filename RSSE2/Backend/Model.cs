@@ -12,57 +12,50 @@ namespace RSSE2.Backend
     public class Model
     {
         private SceneManager scene;
-        private Mdl mdl;
-        private string shader;
-        private List<string> textures;
+        private RSSE2.Model model;
         private int VAOhandle;
 
 
         public Model( RSSE2.Model model )
         {
             scene = SceneManager.Instance;
+            this.model = model;
+        }
 
-            mdl = new Mdl(model.mesh.filename);
-
-            //shader = model.shader.filename;
-            //scene.shaderLoader.Load(shader);
-            shader = "test";
-            scene.shaderLoader.Load("test");
-
-            textures = new List<string>();
-            foreach( Texture tex in model.texture )
+        public void Load()
+        {
+            scene.mdlManager.Load(model.mesh);
+            scene.shaderManager.Load(model.material.shader);
+            if (model.material.textures.Count > 0)
             {
-                textures.Add(tex.filename);
-                scene.texLoader.Add(tex.filename);
-                scene.texLoader.Load(tex.filename);
+                scene.textureManager.Load(model.material.textures[0]);
             }
-
             SetVAO();
         }
 
         private void SetVAO()
         {
             /* set the current shader program */
-            GL.UseProgram( scene.shaderLoader.shader[shader] );
+            GL.UseProgram( scene.shaderManager.shader[model.material.shader] );
 
             /* create the VAO */
             VAOhandle = GL.GenVertexArray();
             GL.BindVertexArray(VAOhandle);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, mdl.VBOhandle);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, scene.mdlManager.models[model.mesh].VBOhandle);
 
             /* set attrib locations */
-            int index = GL.GetAttribLocation(scene.shaderLoader.shader[shader], "vertexPosition");
+            int index = GL.GetAttribLocation(scene.shaderManager.shader[model.material.shader], "vertexPosition");
             GL.EnableVertexAttribArray(index);
             GL.VertexAttribPointer(index, 3, VertexAttribPointerType.Float, false, 14 * 4, 0);
 
-            index = GL.GetAttribLocation(scene.shaderLoader.shader[shader], "vertexUV");
+            index = GL.GetAttribLocation(scene.shaderManager.shader[model.material.shader], "vertexUV");
             GL.EnableVertexAttribArray(index);
             GL.VertexAttribPointer(index, 2, VertexAttribPointerType.Float, false, 14 * 4, 12 * 4);
         }
 
-        public void Load()
+        public void LoadMdl()
         {
-            var error = GL.GetError();
+            Mdl mdl = scene.mdlManager.models[model.mesh];
             /* Buffer the VBO */
             GL.BindBuffer(BufferTarget.ArrayBuffer, mdl.VBOhandle);
             GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float) * mdl.VBO.Length,
@@ -74,35 +67,32 @@ namespace RSSE2.Backend
                 mdl.Indexes, BufferUsageHint.StreamDraw);
         }
 
-        public void Draw(Matrix4 VP)
+        public void Draw(Matrix4 MVP)
         {
+            if (model.material.textures.Count == 0)
+                return;
+
             SceneManager scene = SceneManager.Instance;
 
             /* set the current shader program */
-            GL.UseProgram(scene.shaderLoader.shader[shader]);
+            GL.UseProgram(scene.shaderManager.shader[model.material.shader]);
 
             /* set the texture */
-            int index = GL.GetUniformLocation(scene.shaderLoader.shader[shader], "textureSampler");
+            int index = GL.GetUniformLocation(scene.shaderManager.shader[model.material.shader], "textureSampler");
             GL.Uniform1(index, 0);
             GL.ActiveTexture(TextureUnit.Texture0);
-            /* temporary until mats are taken into account */
-            if (textures.Count > 0)
-            {
-                GL.BindTexture(TextureTarget.Texture2D, scene.texLoader.loadedTexture[textures[0]]);
-            }
-            else
-            {
-                GL.BindTexture(TextureTarget.Texture2D, scene.texLoader.loadedTexture["pink"]);
-            }
-
+            GL.BindTexture(TextureTarget.Texture2D, scene.textureManager.loadedTexture[model.material.textures[0]]);
+            
             /* set the MVP matrix */
-            Matrix4 MVP = VP; //mdl.M * VP;
-            index = GL.GetUniformLocation(scene.shaderLoader.shader[shader], "MVP");
+            index = GL.GetUniformLocation(scene.shaderManager.shader[model.material.shader], "MVP");
             GL.UniformMatrix4(index, false, ref MVP);
 
 
             /* bind the VAO */
             GL.BindVertexArray(VAOhandle);
+
+            /* Get the Model */
+            Mdl mdl = scene.mdlManager.models[model.mesh];
 
             /* Buffer the VBO */
             GL.BindBuffer(BufferTarget.ArrayBuffer, mdl.VBOhandle);

@@ -24,7 +24,7 @@ namespace RSSE2
                 if (_translateCommand == null)
                 {
                     _translateCommand = new RelayCommand(
-                        param => sceneManager.TranslateCamera(0.1f,(Translation)param),
+                        param => sceneManager.TranslateCamera(0.2f,(Translation)param),
                         param => true
                     );
                 }
@@ -42,7 +42,7 @@ namespace RSSE2
                 if (_rotateCommand == null)
                 {
                     _rotateCommand = new RelayCommand(
-                        param => sceneManager.RotateCamera(1,(Rotation)param),
+                        param => sceneManager.RotateCamera(5,(Rotation)param),
                         param => true
                     );
                 }

@@ -29,9 +29,9 @@ namespace RSSE2.Backend
         private OpenTK.Vector3 direction;
         private OpenTK.Vector3 top;
 
-        public ShaderLoader shaderLoader;
-        public TexLoader texLoader;
-        public MdlLoader mdlLoader;
+        public ShaderManager shaderManager;
+        public TextureManager textureManager;
+        public MdlManager mdlManager;
 
         public SceneViewModel CurrentScene { get; set; }
 
@@ -51,9 +51,9 @@ namespace RSSE2.Backend
             GL.DepthFunc(DepthFunction.Lequal);
             GL.ClearColor(System.Drawing.Color.SkyBlue);
 
-            shaderLoader = new ShaderLoader();
-            texLoader = new TexLoader();
-            mdlLoader = new MdlLoader();
+            shaderManager = new ShaderManager();
+            textureManager = new TextureManager();
+            mdlManager = new MdlManager();
 
             /* Initialize the camera */
             eye = new OpenTK.Vector3(0, 0, 0);
@@ -63,31 +63,35 @@ namespace RSSE2.Backend
 
         public void Paint(object sender, PaintEventArgs e)
         {
-            if (CurrentScene != null && CurrentScene.IsLoaded)
-            {
-                Paint();
-            }
+            Paint();
         }
-
+        
         public void Paint()
         {
+            if (CurrentScene == null || !CurrentScene.IsLoaded)
+            {
+                return;
+            }
+
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            Matrix4 P = Matrix4.CreatePerspectiveFieldOfView(
-MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
+            Matrix4 P = Matrix4.CreateScale(-1, 1, 1) * Matrix4.CreatePerspectiveFieldOfView(
+MathHelper.PiOver2, 4f / 3, 0.1f, 100f);         
+            
 
             Matrix4 VP = Matrix4.LookAt(eye,eye+direction,top)*P;
 
             foreach ( KeyValuePair<Part,Model> pair in CurrentScene.scene )
             {
+                pair.Value.Load();
                 if (pair.Value != null)
                 {
                     Matrix4 rotX = Matrix4.CreateRotationX(-(float)pair.Key.rotation.x / 180 * MathHelper.Pi);
                     Matrix4 rotY = Matrix4.CreateRotationY(-(float)pair.Key.rotation.z / 180 * MathHelper.Pi);
                     Matrix4 rotZ = Matrix4.CreateRotationZ((float)pair.Key.rotation.y / 180 * MathHelper.Pi);
                     Matrix4 trans = Matrix4.CreateTranslation((float)pair.Key.position.x, (float)pair.Key.position.z, (float)pair.Key.position.y);
-                    Matrix4 T = rotZ * rotX * rotY * trans;
-                    pair.Value.Draw(T * VP);
+                    Matrix4 M = rotZ * rotX * rotY * trans;
+                    pair.Value.Draw(M * VP);
                 }
             }
 
@@ -111,10 +115,10 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
                     eye = eye - distance * top;
                     break;
                 case Translation.Left:
-                    eye = eye + distance * OpenTK.Vector3.Cross(top, direction);
+                    eye = eye - distance * OpenTK.Vector3.Cross(top, direction);
                     break;
                 case Translation.Right:
-                    eye = eye - distance * OpenTK.Vector3.Cross(top, direction); ;
+                    eye = eye + distance * OpenTK.Vector3.Cross(top, direction); ;
                     break;
 
             }
@@ -133,10 +137,10 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
                     rot = Matrix4.CreateFromAxisAngle(direction, angle / 180 * MathHelper.Pi);
                     break;
                 case Rotation.YawLeft:
-                    rot = Matrix4.CreateFromAxisAngle(top, angle / 180 * MathHelper.Pi);
+                    rot = Matrix4.CreateFromAxisAngle(top, -angle / 180 * MathHelper.Pi);
                     break;
                 case Rotation.YawRight:
-                    rot = Matrix4.CreateFromAxisAngle(top, -angle / 180 * MathHelper.Pi);
+                    rot = Matrix4.CreateFromAxisAngle(top, angle / 180 * MathHelper.Pi);
                     break;
                 case Rotation.PitchUp:
                     rot = Matrix4.CreateFromAxisAngle(OpenTK.Vector3.Cross(top, direction), -angle / 180 * MathHelper.Pi);

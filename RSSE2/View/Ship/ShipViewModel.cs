@@ -12,6 +12,10 @@ namespace RSSE2
         public Ship Ship { get { return ship; } }
 
         public string Folder {  get { return Application.Instance.Settings.RSFolder + @"Mod\RogSysCM\Ships\" + ship.name + @"\"; } }
+        public string Name
+        {
+            get { return ship.name; } 
+        }
 
         public PartTreeViewModel Interior { get; set; }
         public PartTreeViewModel Exterior { get; set; }
@@ -22,7 +26,10 @@ namespace RSSE2
         public ShipViewModel(Ship ship)
         {
             this.ship = ship;
+        }
 
+        public void UpdateViewModel()
+        {
             Interior = new PartTreeViewModel();
             foreach (Part part in ship.interior)
             {
@@ -36,9 +43,9 @@ namespace RSSE2
             InteriorScene.SetupScene(ship.interior);
 
             Exterior = new PartTreeViewModel();
-            foreach(Part part in ship.exterior)
+            foreach (Part part in ship.exterior)
             {
-                if(part.parent == null)
+                if (part.parent == null)
                 {
                     Exterior.Parts.Add(new PartTreeNodeViewModel(part, null));
                 }

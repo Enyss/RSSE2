@@ -12,6 +12,8 @@ namespace RSSE2.Backend
 {
     public class Mdl
     {
+        public string name;
+
         private List<List<float>> vertex;
         private List<List<float>> normal;
         private List<List<float>> tangent;
@@ -27,8 +29,6 @@ namespace RSSE2.Backend
         public ushort[] Indexes { get; }
         public int IndexesHandle;
         public Matrix4 M;
-
-        public string name;
 
         public Mdl(string name)
         {

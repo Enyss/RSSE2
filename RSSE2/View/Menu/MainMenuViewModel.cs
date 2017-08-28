@@ -55,6 +55,9 @@ namespace RSSE2
             Ship s = new Ship(shipHullName);
             ShipViewModel ship = new ShipViewModel(s);
             Application.Instance.CurrentlyLoaded = ship;
+
+            s.LoadFromFile(Application.Instance.Settings.RSFolder + @"Mod\RogSysCM\Ships\" + shipHullName + ".rog");
+            ship.UpdateViewModel();
         }
 
         #endregion

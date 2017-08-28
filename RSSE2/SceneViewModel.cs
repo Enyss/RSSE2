@@ -25,7 +25,10 @@ namespace RSSE2
             scene = new ObservableDictionnary<Part, RSSE2.Backend.Model>();
             foreach (Part part in parts)
             {
-                scene.Add(part, null);
+                if (part.components.ContainsKey("Model"))
+                {
+                    scene.Add( part, new RSSE2.Backend.Model((Model)part.components["Model"]) );
+                }
             }
         }
 
@@ -36,17 +39,9 @@ namespace RSSE2
 
         public bool Loading()
         {
-            List<Part> parts = new List<Part>(scene.Keys);
-            foreach (Part part in parts)
+            foreach (KeyValuePair<Part, RSSE2.Backend.Model> pair in scene)
             {
-                if (part.components.ContainsKey("Model"))
-                {
-                    scene[part] = new RSSE2.Backend.Model((Model)part.components["Model"]);
-                }
-                else
-                {
-                    scene[part] = null;
-                }
+                pair.Value.Load();
             }
             return true;
         }

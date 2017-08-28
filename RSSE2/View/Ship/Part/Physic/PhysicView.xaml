@@ -32,10 +32,9 @@
     <StackPanel>
         <Expander Header="Physic" Width="300">
             <StackPanel>
-                <CheckBox Margin="5" IsChecked="{Binding Collision}">Enable collision</CheckBox>
-                <ComboBox Margin="5" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding ShapeList}" SelectedValue="{Binding ShapeType}" />
-                <ContentControl Content="{Binding CollisionShape}"/>
-                <Separator />
+                <StackPanel.Resources>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                </StackPanel.Resources>
                 <Grid>
                     <Label>Mass</Label>
                     <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Mass}"></TextBox>
@@ -45,6 +44,11 @@
                     <TextBox HorizontalAlignment="Right" Width="200" Margin="5" Text="{Binding Friction}"></TextBox>
                 </Grid>
                 <Separator />
+                <CheckBox Margin="5" IsChecked="{Binding Collision}" Name="EnableCollision">Enable collision</CheckBox>
+                <ComboBox Visibility="{Binding ElementName=EnableCollision, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Margin="5" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding ShapeList}" SelectedValue="{Binding ShapeType}" />
+                <ContentControl Visibility="{Binding ElementName=EnableCollision, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Content="{Binding CollisionShape}"/>
             </StackPanel>
         </Expander>
         <Separator/>

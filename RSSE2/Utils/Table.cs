@@ -9,6 +9,8 @@ namespace RSSE2
 {
     public class Table : Dictionary<string, dynamic>
     {
+        public Table() : base() { }
+
         public Table(MoonSharp.Interpreter.Table luaTable) : base()
         {
             IEnumerable<DynValue> keys = luaTable.Keys.AsEnumerable();
@@ -30,6 +32,43 @@ namespace RSSE2
                         break;
                 }
             }
+        }
+
+        public string ToLuaString(int lvl)
+        {
+            string s = "";
+
+            foreach( KeyValuePair<string, dynamic> pair in this)
+            {
+                s += tab(lvl) + pair.Key + " = ";
+
+                if( pair.Value is Table)
+                {
+                    s += " {\n";
+                    s += pair.Value.ToLuaString(lvl + 1);
+                    s += tab(lvl) + "},\n";
+                }
+                else if ( pair.Value is string)
+                {
+                    s += " \"" + pair.Value + "\",\n";
+                }
+                else
+                {
+                    s += pair.Value + ",\n";
+                }
+            }
+
+            return s;
+        }
+
+        private string tab(int n)
+        {
+            string s = "";
+            for (int i = 0; i < n; i++)
+            {
+                s += "    ";
+            }
+            return s;
         }
     }
 }

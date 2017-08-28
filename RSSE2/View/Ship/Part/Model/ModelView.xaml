@@ -9,9 +9,31 @@
     <StackPanel>
         <Expander Width="300" Header="Model">
             <StackPanel>
-                <local:MeshView DataContext="{Binding Mesh}" />
-                <local:ShaderView DataContext="{Binding Shader}" />
-                <local:TexturesView DataContext="{Binding Textures}" />
+                <Label>Mesh :</Label>
+                <Grid>
+                    <TextBox Width="200" Margin="2" HorizontalAlignment="Left" IsReadOnly="True"
+                             Text="{Binding Mesh}"/>
+                    <Button Width="75" Margin="3" HorizontalAlignment="Right" 
+                            Command="{Binding SelectMeshCommand}">
+                        Select
+                    </Button>
+                </Grid>
+                <Label>Material :</Label>
+                <Grid>
+                    <ComboBox Width="200" Margin="2" HorizontalAlignment="Left" 
+                              IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Name"
+                              ItemsSource="{Binding MaterialList}" SelectedItem="{Binding Material}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Width="75" Margin="3" HorizontalAlignment="Right"
+                            Command="{Binding OpenMaterialEditorCommand}">
+                        Editor
+                    </Button>
+                </Grid>
             </StackPanel>
         </Expander>
         <Separator/>
