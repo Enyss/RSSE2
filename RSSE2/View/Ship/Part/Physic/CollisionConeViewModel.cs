@@ -8,37 +8,31 @@ namespace RSSE2
 {
     class CollisionConeViewModel : CollisionShapeViewModel
     {
-        private CollisionCone _cone;
-        public CollisionCone Cone { get { return _cone; } }
 
         #region Properties
 
         public double Radius
         {
-            get { return _cone.r; }
+            get { return ((CollisionCone)Shape).r; }
             set
             {
-                _cone.r = value;
+                ((CollisionCone)Shape).r = value;
                 OnPropertyChanged();
             }
         }
 
         public double Height
         {
-            get { return _cone.h; }
+            get { return ((CollisionCone)Shape).h; }
             set
             {
-                _cone.h = value;
+                ((CollisionCone)Shape).h = value;
                 OnPropertyChanged();
             }
         }
 
         #endregion
 
-        public CollisionConeViewModel(CollisionCone cone)
-        {
-            _cone = cone;
-        }
-
+        public CollisionConeViewModel(CollisionCone cone) : base(cone) { }
     }
 }

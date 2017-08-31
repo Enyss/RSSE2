@@ -48,17 +48,7 @@ namespace RSSE2
 
         public void RenamePart()
         {
-            /* Not MVVM ! */
-            PartNameEditorViewModel windowViewModel= new PartNameEditorViewModel();
-            windowViewModel.NewName = Name;
-            PartNameEditorView window = new PartNameEditorView();
-            window.DataContext = windowViewModel;
-            bool result = (bool)window.ShowDialog();
 
-            if (result)
-            {
-                Name = windowViewModel.NewName;
-            }
         }
 
         public ICommand RenamePartCommand

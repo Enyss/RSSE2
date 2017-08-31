@@ -36,9 +36,14 @@ namespace RSSE2
             z = table["z"];
         }
 
-        internal dynamic ToTable()
+        public Table ToTable()
         {
-            throw new NotImplementedException();
+            Table table = new Table();
+            table.Add("x", x);
+            table.Add("y", y);
+            table.Add("z", z);
+            return table;
+
         }
     }
 }

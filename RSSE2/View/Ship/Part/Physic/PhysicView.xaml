@@ -30,7 +30,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel>
-        <Expander Header="Physic" Width="300">
+        <Expander Header="Physic" IsExpanded="True" Width="300">
             <StackPanel>
                 <StackPanel.Resources>
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

@@ -8,12 +8,8 @@ namespace RSSE2
 {
     public class CollisionConvexHullViewModel : CollisionShapeViewModel
     {
-        private CollisionConvexHull _convexHull;
-        public CollisionConvexHull ConvexHull { get { return _convexHull; } }
-
-        public CollisionConvexHullViewModel( CollisionConvexHull convexHull )
+        public CollisionConvexHullViewModel(CollisionShape shape) : base(shape)
         {
-            _convexHull = convexHull;
         }
     }
 }

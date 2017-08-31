@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="RSSE2.StateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             xmlns:local="clr-namespace:RSSE2"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300">
+    <StackPanel>
+        <DockPanel>
+            <Label>Motion Type :</Label>
+            <ComboBox Margin="3" ItemsSource="{Binding MotionTypeList}" SelectedItem="{Binding MotionType}"/>
+        </DockPanel>
+        <Label>Position :</Label>
+        <local:Vector3View DataContext="{Binding Position}" />
+        <Label>Rotation :</Label>
+        <local:Vector3View DataContext="{Binding Rotation}"/>
+        <Label>Scale :</Label>
+        <local:Vector3View DataContext="{Binding Scale}"/>
+        <DockPanel>
+            <Label>Start Pause :</Label>
+            <wpfTool:SingleUpDown FormatString="G" CultureInfo="en-US"  Value="{Binding StartPause}" Increment="50" HorizontalAlignment="Right" Width="100" Margin="3"/>
+        </DockPanel>
+        <DockPanel>
+            <Label>Rate :</Label>
+            <wpfTool:SingleUpDown FormatString="G" CultureInfo="en-US"  Value="{Binding Rate}" Increment="50" HorizontalAlignment="Right" Width="100" Margin="3"/>
+        </DockPanel>
+        <DockPanel>
+            <CheckBox VerticalAlignment="Center" Margin="3" IsChecked="{Binding Visible}"/>
+            <Label>Visible </Label>
+        </DockPanel>
+        <DockPanel>
+            <CheckBox VerticalAlignment="Center" Margin="3" IsChecked="{Binding CollisionEnabled}"/>
+            <Label>Collision enabled</Label>
+        </DockPanel>
+        <DockPanel>
+            <Label>Trigger function :</Label>
+            <TextBox VerticalAlignment="Center" Margin="3" Text="{Binding TriggerFunction}"/>
+        </DockPanel>
+    </StackPanel>
+</UserControl>

@@ -11,9 +11,16 @@ namespace RSSE2
 
     public class Part
     {
+        public static BiDictionary<ObjectType, string> Type = new BiDictionary<RSSE2.ObjectType, string>
+        {
+            { ObjectType.HATCH, "HATCH" }, { ObjectType.HULLexterior,"HULLexterior" }, { ObjectType.HULLinterior,"HULLinterior" },
+            { ObjectType.INSTALL,"INSTALL" }, { ObjectType.LIGHT,"LIGHT" }, { ObjectType.NONE,"NONE" },
+            { ObjectType.PIVOT,"PIVOT" }, { ObjectType.SEAT,"SEAT" }, { ObjectType.SEATrestraint,"SEATrestraint" },
+            { ObjectType.SWITCH,"SWITCH" }, { ObjectType.TRIGGER, "TRIGGER" }
+        };
+
         public Dictionary<string, Component> components;
         public string name;
-        public string rogName;
 
         public string parentName;
         public Part parent;
@@ -29,21 +36,19 @@ namespace RSSE2
             components = new Dictionary<string, Component>();
             children = new List<Part>();
 
-            name = "New part";
-            rogName = "default";
+            name = "default";
             parentName = "NONE";
             position = new Vector3();
             rotation = new Vector3();
 
         }
 
-        public Part( Table table, int id )
+        public Part(Table table, int id)
         {
             components = new Dictionary<string, Component>();
             children = new List<Part>();
 
             name = table["Name"];
-            rogName = table["Name"];
             parentName = table["ParentTo"];
 
             type = GetObjectType(table);
@@ -73,37 +78,39 @@ namespace RSSE2
             {
                 components.Add("Physic", physic);
             }
+
+            Dynamic dynamic = Dynamic.GenerateComponent(table);
+            if (dynamic != null)
+            {
+                components.Add("Dynamic", dynamic);
+            }
         }
 
         private ObjectType GetObjectType(Table table)
         {
-            switch (table["SpecialObjectName"])
+            if (Type.ContainsKey2(table["SpecialObjectName"]))
             {
-                case "HATCH":
-                    return ObjectType.HATCH;
-                case "HULLexterior":
-                    return ObjectType.HULLexterior;
-                case "HULLinterior":
-                    return ObjectType.HULLinterior;
-                case "INSTALL":
-                    return type = ObjectType.INSTALL;
-                case "LIGHT":
-                    return ObjectType.LIGHT;
-                case "NONE":
-                    return ObjectType.NONE;
-                case "PIVOT":
-                    return ObjectType.PIVOT;
-                case "SEAT":
-                    return ObjectType.SEAT;
-                case "SEATrestraint":
-                    return ObjectType.SEATrestraint;
-                case "SWITCH":
-                    return ObjectType.SWITCH;
-                case "TRIGGER":
-                    return ObjectType.TRIGGER;
+                return Type.GetValueByKey2(table["SpecialObjectName"]);
+            }
+            return ObjectType.NONE;
+        }
+
+        internal Table ToTable()
+        {
+            Table table = new Table();
+
+            table.Add("Name", name);
+            table.Add("ParentTo", parent == null ? "NONE" : parent.name);
+            table.Add("Position", position.ToTable());
+            table.Add("Rotation", rotation.ToTable());
+            table.Add("SpecialObjectName", Type.GetValueByKey1(type));
+
+            foreach (KeyValuePair<string, Component> pair in components)
+            {
+                pair.Value.ToTable(table);
             }
 
-            return ObjectType.NONE;
+            return table;
         }
     }
 }

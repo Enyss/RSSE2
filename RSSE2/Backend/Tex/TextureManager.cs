@@ -21,6 +21,9 @@ namespace RSSE2.Backend
 
         public void Load(string name)
         {
+            if (name == null)
+                return;
+
             if (!textures.ContainsKey(name))
             {
                 textures[name] = new Tex(Application.Instance.Settings.RSFolder + name);

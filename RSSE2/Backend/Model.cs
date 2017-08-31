@@ -26,10 +26,7 @@ namespace RSSE2.Backend
         {
             scene.mdlManager.Load(model.mesh);
             scene.shaderManager.Load(model.material.shader);
-            if (model.material.textures.Count > 0)
-            {
-                scene.textureManager.Load(model.material.textures[0]);
-            }
+            scene.textureManager.Load(model.material.textures[0]);
             SetVAO();
         }
 
@@ -69,7 +66,7 @@ namespace RSSE2.Backend
 
         public void Draw(Matrix4 MVP)
         {
-            if (model.material.textures.Count == 0)
+            if (model.material.textures[0] == null)
                 return;
 
             SceneManager scene = SceneManager.Instance;

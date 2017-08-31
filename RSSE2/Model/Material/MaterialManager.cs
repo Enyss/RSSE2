@@ -46,7 +46,7 @@ namespace RSSE2
             
         }
 
-        internal Material CreateMaterial(string shader, List<string> textures)
+        internal Material CreateMaterial(string shader, string[] textures)
         {
             Material material;
 
@@ -63,30 +63,35 @@ namespace RSSE2
             material = new Material("Material_" + materials.Count);
 
             material.shader = @"Shaders/rsGeneral/" + shader + ".shader";
-            foreach( string tex in textures )
+            for( int i=0; i < textures.Count(); i++ )
             {
-                /* Temporary until the Symbology textures are better understood */
-                if (tex.Contains("Symbology"))
-                {
-                    if (!File.Exists(Application.Instance.Settings.RSFolder + @"mod/rogsyscm/ships/" + Application.Instance.CurrentlyLoaded.Name + @"/" + tex + ".tex"))
-                    {
-                        File.Copy(Application.Instance.Settings.RSFolder + @"mod/rogsyscm/shared/art/maps/pink.tex",
-                                  Application.Instance.Settings.RSFolder + @"mod/rogsyscm/ships/" + Application.Instance.CurrentlyLoaded.Name + @"/" + tex + ".tex");
-                    }
-                }
-                /*   */
+                string tex = textures[i];
 
-                if (File.Exists(Application.Instance.CurrentlyLoaded.Folder + tex + ".tex" ))
+                if (tex != null)
                 {
-                    material.textures.Add(@"mod/rogsyscm/ships/" + Application.Instance.CurrentlyLoaded.Name + @"/" + tex + ".tex");
-                }
-                else if (File.Exists(Application.Instance.Settings.RSFolder + @"mod/rogsyscm/shared/art/maps/" + tex + ".tex"))
-                {
-                    material.textures.Add(@"mod/rogsyscm/shared/art/maps/" + tex + ".tex");
-                }
-                else
-                {
-                    material.textures.Add(@"mod/rogsyscm/shared/art/maps/pink.tex");
+                    /* Temporary until the Symbology textures are better understood */
+                    if (tex.Contains("Symbology"))
+                    {
+                        if (!File.Exists(Application.Instance.Settings.RSFolder + @"mod/rogsyscm/ships/" + Application.Instance.CurrentlyLoaded.Name + @"/" + tex + ".tex"))
+                        {
+                            File.Copy(Application.Instance.Settings.RSFolder + @"mod/rogsyscm/shared/art/maps/pink.tex",
+                                      Application.Instance.Settings.RSFolder + @"mod/rogsyscm/ships/" + Application.Instance.CurrentlyLoaded.Name + @"/" + tex + ".tex");
+                        }
+                    }
+                    /*   */
+
+                    if (File.Exists(Application.Instance.CurrentlyLoaded.Folder + tex + ".tex"))
+                    {
+                        material.textures[i] = @"mod/rogsyscm/ships/" + Application.Instance.CurrentlyLoaded.Name + @"/" + tex + ".tex";
+                    }
+                    else if (File.Exists(Application.Instance.Settings.RSFolder + @"mod/rogsyscm/shared/art/maps/" + tex + ".tex"))
+                    {
+                        material.textures[i] = @"mod/rogsyscm/shared/art/maps/" + tex + ".tex";
+                    }
+                    else
+                    {
+                        material.textures[i] = @"mod/rogsyscm/shared/art/maps/pink.tex";
+                    }
                 }
             }
 

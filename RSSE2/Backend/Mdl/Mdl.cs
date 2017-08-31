@@ -186,7 +186,7 @@ namespace RSSE2.Backend
             int size1 = b.ReadInt32();
             int type1 = b.ReadInt32();
             int type2 = b.ReadInt32();
-            index.Add(readShortArray(b, size/6-6));
+            index.Add(readShortArray(b, size/6 - 2));
         }
 
         private List<float> readFloatArray(BinaryReader b, int length)

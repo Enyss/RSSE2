@@ -6,15 +6,10 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    class CollisionMeshViewModel: CollisionShapeViewModel
+    public class CollisionMeshViewModel : CollisionShapeViewModel
     {
-        private CollisionMesh _mesh;
-        public CollisionMesh Mesh { get { return _mesh; } }
-
-        public CollisionMeshViewModel(CollisionMesh mesh)
+        public CollisionMeshViewModel(CollisionShape shape) : base(shape)
         {
-            _mesh = mesh;
         }
-
     }
 }

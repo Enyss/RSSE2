@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MoonSharp.Interpreter;
+using System.Globalization;
 
 namespace RSSE2
 {
@@ -44,17 +45,17 @@ namespace RSSE2
 
                 if( pair.Value is Table)
                 {
-                    s += " {\n";
+                    s += "{\n";
                     s += pair.Value.ToLuaString(lvl + 1);
-                    s += tab(lvl) + "},\n";
+                    s += tab(lvl) + (lvl==0? "}\n" : "},\n");
                 }
                 else if ( pair.Value is string)
                 {
-                    s += " \"" + pair.Value + "\",\n";
+                    s += "\"" + pair.Value + "\",\n";
                 }
                 else
                 {
-                    s += pair.Value + ",\n";
+                    s += pair.Value.ToString("G", CultureInfo.InvariantCulture) + ",\n";
                 }
             }
 

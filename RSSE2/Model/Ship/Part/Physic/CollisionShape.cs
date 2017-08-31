@@ -23,7 +23,6 @@ namespace RSSE2
         public static ObservableCollection<string> ShapeType { get { return shapeType; } }
 
         public abstract CollisionShapeViewModel CreateViewModel();
-
-        public abstract void ToTable(Table table);
+        public abstract void ToTable( Table table );
     }
 }

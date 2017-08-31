@@ -11,10 +11,14 @@ namespace RSSE2
     {
         public Material material;
         public string mesh;
+        public string subFunction;
+        public double LODout;
+        public bool shadowCast;
+        public bool dynamicShadow;
 
         public static Model GenerateComponent(Table table)
         {
-            if (table.ContainsKey("Material") || table.ContainsKey("Shader") )
+            if (table.ContainsKey("Material") || table.ContainsKey("Shader"))
             {
                 return new Model(table);
             }
@@ -29,7 +33,7 @@ namespace RSSE2
         {
             if (table.ContainsKey("Model"))
             {
-                mesh = table["Model"]=="NONE"? table["Name"] : table["Model"];
+                mesh = table["Model"] == "NONE" ? table["Name"] : table["Model"];
             }
             else
             {
@@ -44,23 +48,28 @@ namespace RSSE2
             else
             {
                 string shader = table["Shader"];
-                List<string> textures = new List<string>();
-                foreach (KeyValuePair<string, dynamic> e in table["Texture"])
+                string[] textures = new string[7];
+                for (int i = 1; i < textures.Count(); i++)
                 {
-                    textures.Add(e.Value);
-                }
-
-                if (textures.Count == 0)
-                {
-
+                    if (table["Texture"].ContainsKey("T" + i))
+                    {
+                        textures[i - 1] = table["Texture"]["T" + i];
+                    }
                 }
 
                 material = MaterialManager.Instance.CreateMaterial(shader, textures);
             }
+
+            subFunction = table.ContainsKey("SUBfunction") ? table["SUBfunction"] : "0";
+            shadowCast = table.ContainsKey("ShadowCast") ? table["ShadowCast"] == 1 : false;
+            dynamicShadow = table.ContainsKey("DynamicShadow") ? table["DynamicShadow"] == 1 : false;                
+            LODout = table["LODout"];
         }
 
         override public void ToTable(Table table)
         {
+            table.Add("Model", mesh);
+            table.Add("Material", material.Name);
         }
 
         public override ComponentViewModel CreateViewModel()

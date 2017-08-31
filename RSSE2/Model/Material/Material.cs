@@ -18,7 +18,6 @@ namespace RSSE2
                 string oldname = name;
                 name = value;
                 MaterialManager.Instance.MaterialNameChanged(name, oldname);
-
             }
         }
 
@@ -37,7 +36,7 @@ namespace RSSE2
         int drawmode;
 
         public string shader;
-        public List<string> textures;
+        public string[] textures;
 
         public Material(string name)
         {
@@ -45,7 +44,7 @@ namespace RSSE2
             diffuse = new ColorRGBA();
             specular = new ColorRGBA();
             shader = "";
-            textures = new List<string>();
+            textures = new string[7];
         }
 
         public void LoadFromFile(string filename)
@@ -58,7 +57,11 @@ namespace RSSE2
 
                 if (s[0].StartsWith("texture"))
                 {
-                    textures.Add(s[1].Substring(1, s[1].Length - 2));
+                    int index;
+                    if (Int32.TryParse(s[0].Substring(7), out index))
+                    {
+                        textures[index] = s[1].Substring(1, s[1].Length - 2);
+                    }
                 }
                 else
                 {
@@ -86,20 +89,23 @@ namespace RSSE2
             }
         }
 
-        internal bool Is(string shader, List<string> textures)
+        internal bool Is(string shader, string[] textures)
         {
             if ( ExtractName(this.shader, ".shader") != shader )
                 return false;
-    
-            if (this.textures.Count != textures.Count)
-                return false;
 
-            for (int i = 0; i < textures.Count; i++)
+            for (int i=0; i < textures.Length; i++)
             {
-                if (ExtractName(this.textures[i], ".tex") != textures[i])
+                if (this.textures[i] != null)
+                {
+                    if (textures[i] != ExtractName(this.textures[i], ".tex"))
+                        return false;
+                }
+                else if (textures[i] != null)
+                {
                     return false;
+                }
             }
-
             return true;
         }
 

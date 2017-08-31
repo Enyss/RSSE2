@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
-    <StackPanel>
+    <StackPanel Margin="15">
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Width="50">Name :</Label>
@@ -18,24 +18,21 @@
                 <Button Width="45" Height="20">Select</Button>
             </StackPanel>
             <Label>Textures:</Label>
-            <DockPanel LastChildFill="False">
-                <ListBox  MinHeight="100" HorizontalAlignment="Stretch" Margin="3" DockPanel.Dock="Top"
+            <ItemsControl Name="TextureList" Margin="10"
                           ItemsSource="{Binding Textures}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Item1}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Item2}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Button DockPanel.Dock="Bottom" Margin="3" Width="100" HorizontalAlignment="Right">Add Texture</Button>
-            </DockPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Label DockPanel.Dock="Left">Texture</Label>
+                            <Button DockPanel.Dock="Right" Width="75" Margin="3" HorizontalAlignment="Right"
+                                    Command="{Binding ElementName=TextureList, Path=DataContext.SetTextureCommand}" CommandParameter="{Binding Key, Mode=OneTime}">
+                                Select
+                            </Button>
+                            <TextBox Margin="10,3" IsReadOnly="True" Text="{Binding Value, Mode=OneWay}"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
         <Expander Header="Settings">
             <StackPanel>

@@ -33,9 +33,12 @@ namespace RSSE2
             get => (data[key]);
             set
             {
-
+                if (value.Equals(data[key]))
+                    return;
+                TValue oldValue = data[key];
                 data[key] = value;
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, key,key));
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset)); //NotifyCollectionChangedAction.Replace, value, oldValue));
+
             }
         }
 

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RSSE2
 {
@@ -12,7 +14,7 @@ namespace RSSE2
         private Material _material;
         public Material Material { get { return _material; } }
 
-        public ObservableCollection<Tuple<int, string>> Textures { get; set; }
+        public ObservableDictionnary<int,string> Textures { get; set; }
 
         public string Name
         {
@@ -34,34 +36,53 @@ namespace RSSE2
             }
         }
 
-        public MaterialViewModel(Material material)
+        #region Commands
+
+        private ICommand _setTextureCommand;
+        public ICommand SetTextureCommand
         {
-            _material = material;
-            Textures = new ObservableCollection<Tuple<int,string>>();
-            for ( int i = 0; i < material.textures.Count; i++)
+            get
             {
-                Textures.Add(new Tuple<int, string>(i, material.textures[i]) );
+                if (_setTextureCommand == null)
+                {
+                    _setTextureCommand = new RelayCommand(
+                        param => this.SetTexture((int)param),
+                        param => true
+                    );
+                }
+                return _setTextureCommand;
             }
         }
 
-        public void AddTexture(string texture)
+        private void SetTexture(int textureIndex)
         {
-            //textures.Add(texture);
-            Material.textures.Add(texture);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Texture Files (*.tex)|*.tex";
+            openFileDialog.InitialDirectory = Application.Instance.CurrentlyLoaded.Folder;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string s = openFileDialog.FileName;
+                if (s.StartsWith(Application.Instance.Settings.RSFolder))
+                {
+                    string texture = s.Substring(Application.Instance.Settings.RSFolder.Length);
+                    Textures[textureIndex] = texture;
+                    Material.textures[textureIndex] = texture;
+                }
+
+            }
         }
 
-        public void RemoveTexture(string texture)
+        #endregion
+
+        public MaterialViewModel(Material material)
         {
-            //textures.Remove(texture);
-            Material.textures.Remove(texture);
+            _material = material;
+            Textures = new ObservableDictionnary<int, string>();
+            for ( int i = 0; i < material.textures.Count(); i++)
+            {
+                Textures.Add( i, material.textures[i] );
+            }
         }
-
-        public void EditTexture(int index, string newTexture)
-        {
-            //textures[index] = newTexture;
-            Material.textures[index] = newTexture;
-        }
-
-
     }
 }

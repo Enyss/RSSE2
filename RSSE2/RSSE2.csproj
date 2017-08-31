@@ -126,6 +126,24 @@
     <Compile Include="Backend\Vertex.cs" />
     <Compile Include="Backend\VertexAttribute.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="View\Ship\Part\Dynamic\DynamicViewModel.cs">
+      <DependentUpon>DynamicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\Part\Dynamic\StateView.xaml.cs">
+      <DependentUpon>StateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\Part\Dynamic\DynamicView.xaml.cs">
+      <DependentUpon>DynamicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ship\Part\Dynamic\Dynamic.cs" />
+    <Compile Include="Model\Ship\Part\Dynamic\State.cs" />
+    <Compile Include="Utils\BiDictionary.cs" />
+    <Compile Include="View\Ship\Part\Dynamic\StateViewModel.cs">
+      <DependentUpon>StateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipGeneralView.xaml.cs">
+      <DependentUpon>ShipGeneralView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Material\MaterialEditorViewModel.cs">
       <DependentUpon>MaterialEditorView.xaml</DependentUpon>
     </Compile>
@@ -134,7 +152,7 @@
     </Compile>
     <Compile Include="Model\Material\MaterialManager.cs" />
     <Compile Include="Utils\ObservableDictionnary.cs" />
-    <Compile Include="SceneViewModel.cs" />
+    <Compile Include="View\SceneViewModel.cs" />
     <Compile Include="View\Material\MaterialViewModel.cs">
       <DependentUpon>MaterialView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +178,7 @@
     <Compile Include="Model\Material\Material.cs" />
     <Compile Include="Model\ColorRGB.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="View\Ship\ShipViewModel.cs" />
     <Compile Include="View\View3DView.xaml.cs">
       <DependentUpon>View3DView.xaml</DependentUpon>
     </Compile>
@@ -167,9 +186,6 @@
       <DependentUpon>ShipAreaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Ship\ShipView.xaml.cs">
-      <DependentUpon>ShipView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ship\ShipViewModel.cs">
       <DependentUpon>ShipView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Ship\Part\Light\LightView.xaml.cs">
@@ -187,12 +203,6 @@
     </Compile>
     <Compile Include="View\Vector3ViewModel.cs">
       <DependentUpon>Vector3View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ship\Part\PartNameEditorView.xaml.cs">
-      <DependentUpon>PartNameEditorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ship\Part\PartNameEditorViewModel.cs">
-      <DependentUpon>PartNameEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Ship\Part\PartTreeViewModel.cs">
       <DependentUpon>PartTreeView.xaml</DependentUpon>
@@ -281,6 +291,18 @@
     <Compile Include="View\View3DViewModel.cs">
       <DependentUpon>View3DView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Ship\Part\Dynamic\StateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\Part\Dynamic\DynamicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipGeneralView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Material\MaterialEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,10 +340,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Vector3View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Ship\Part\PartNameEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

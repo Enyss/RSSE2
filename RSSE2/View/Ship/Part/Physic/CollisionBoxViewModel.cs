@@ -8,47 +8,41 @@ namespace RSSE2
 {
     class CollisionBoxViewModel : CollisionShapeViewModel
     {
-        private CollisionBox _box;
-        public CollisionBox Box { get { return _box; } }
 
         #region Properties
 
         public double Length
         {
-            get { return _box.l; }
+            get { return ((CollisionBox)Shape).l; }
             set
             {
-                _box.l = value;
+                ((CollisionBox)Shape).l = value;
                 OnPropertyChanged();
             }
         }
 
         public double Width
         {
-            get { return _box.w; }
+            get { return ((CollisionBox)Shape).w; }
             set
             {
-                _box.w = value;
+                ((CollisionBox)Shape).w = value;
                 OnPropertyChanged();
             }
         }
 
         public double Height
         {
-            get { return _box.h; }
+            get { return ((CollisionBox)Shape).h; }
             set
             {
-                _box.h = value;
+                ((CollisionBox)Shape).h = value;
                 OnPropertyChanged();
             }
         }
 
         #endregion
 
-        public CollisionBoxViewModel( CollisionBox box )
-        {
-            _box = box;
-        }
-
+        public CollisionBoxViewModel(CollisionBox box) : base(box) { }
     }
 }

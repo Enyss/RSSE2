@@ -23,6 +23,21 @@ namespace RSSE2
             }
         }
 
+        public string Type
+        {
+            get { return Part.Type.GetValueByKey1(Part.type); }
+            set
+            {
+                Part.type = Part.Type.GetValueByKey2(value);
+                OnPropertyChanged();
+            }
+        }
+
+        public List<string> TypeList
+        {
+            get { return Part.Type.Key2s.ToList(); }
+        }
+
         private Vector3ViewModel position;
         public Vector3ViewModel Position
         {

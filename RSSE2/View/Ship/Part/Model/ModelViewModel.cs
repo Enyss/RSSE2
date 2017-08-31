@@ -16,10 +16,7 @@ namespace RSSE2
 
         public string Mesh
         {
-            get
-            {
-                return Model.mesh;
-            }
+            get { return Model.mesh; }
             set
             {
                 Model.mesh = value;
@@ -30,10 +27,7 @@ namespace RSSE2
 
         public Material Material
         {
-            get
-            {
-                return Model.material;
-            }
+            get { return Model.material; }
             set
             {
                 Model.material = value;
@@ -45,6 +39,47 @@ namespace RSSE2
         public List<Material> MaterialList
         {
             get { return MaterialManager.Instance.MaterialList; }
+        }
+
+
+        public string SubFunction
+        {
+            get { return Model.subFunction; }
+            set
+            {
+                Model.subFunction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double LODout
+        {
+            get { return Model.LODout; }
+            set
+            {
+                Model.LODout = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShadowCast
+        {
+            get { return Model.shadowCast; }
+            set
+            {
+                Model.shadowCast = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool DynamicShadow
+        {
+            get { return Model.dynamicShadow; }
+            set
+            {
+                Model.dynamicShadow = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

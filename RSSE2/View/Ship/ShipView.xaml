@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
         <TabItem Header="General">
-
+            <local:ShipGeneralView DataContext="{Binding}" />
         </TabItem>
         <TabItem Header="Exterior" GotFocus="ExteriorTab_GotFocus">
             <local:ShipAreaView DataContext="{Binding Exterior}"/>

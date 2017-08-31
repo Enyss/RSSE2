@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RSSE2
 {
@@ -22,6 +23,27 @@ namespace RSSE2
 
         public SceneViewModel InteriorScene { get; set; }
         public SceneViewModel ExteriorScene { get; set; }
+
+
+        #region Commands
+
+        private ICommand _saveShipCommand;
+        public ICommand SaveShipCommand
+        {
+            get
+            {
+                if (_saveShipCommand == null)
+                {
+                    _saveShipCommand = new RelayCommand(
+                        param => SaveShip(),
+                        param => true
+                    );
+                }
+                return _saveShipCommand;
+            }
+        }
+
+        #endregion
 
         public ShipViewModel(Ship ship)
         {
@@ -53,6 +75,11 @@ namespace RSSE2
 
             ExteriorScene = new SceneViewModel();
             ExteriorScene.SetupScene(ship.exterior);
+        }
+
+        private void SaveShip()
+        {
+            Ship.SaveToFile();
         }
     }
 }

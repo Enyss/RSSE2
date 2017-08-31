@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace RSSE2
 {
-    class CollisionCylinderViewModel : CollisionShapeViewModel
+    public class CollisionCylinderViewModel : CollisionShapeViewModel
     {
-        private CollisionCylinder _cylinder;
-        public CollisionCylinder Cylinder { get { return _cylinder; } }
-
+        public CollisionCylinderViewModel(CollisionShape shape) : base(shape)
+        {
+        }
         #region Properties
 
         public double Radius
         {
-            get { return _cylinder.r; }
+            get { return ((CollisionCylinder)Shape).r; }
             set
             {
-                _cylinder.r = value;
+                ((CollisionCylinder)Shape).r = value;
                 OnPropertyChanged();
             }
         }
@@ -26,20 +26,14 @@ namespace RSSE2
 
         public double Height
         {
-            get { return _cylinder.h; }
+            get { return ((CollisionCylinder)Shape).h; }
             set
             {
-                _cylinder.h = value;
+                ((CollisionCylinder)Shape).h = value;
                 OnPropertyChanged();
             }
         }
 
         #endregion
-
-        public CollisionCylinderViewModel(CollisionCylinder cylinder)
-        {
-            _cylinder = cylinder;
-        }
-
     }
 }

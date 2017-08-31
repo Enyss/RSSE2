@@ -3,24 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
              xmlns:local="clr-namespace:RSSE2"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="300">
     <StackPanel>
-        <Expander Width="300" Header="Model">
+        <Expander Width="300" IsExpanded="True" Header="Model">
             <StackPanel>
                 <Label>Mesh :</Label>
-                <Grid>
-                    <TextBox Width="200" Margin="2" HorizontalAlignment="Left" IsReadOnly="True"
-                             Text="{Binding Mesh}"/>
-                    <Button Width="75" Margin="3" HorizontalAlignment="Right" 
+                <DockPanel>
+                    <Button Width="75" Margin="3" DockPanel.Dock="Right" 
                             Command="{Binding SelectMeshCommand}">
                         Select
                     </Button>
-                </Grid>
+                    <TextBox Margin="2" IsReadOnly="True"
+                             Text="{Binding Mesh}"/>
+                </DockPanel>
                 <Label>Material :</Label>
-                <Grid>
-                    <ComboBox Width="200" Margin="2" HorizontalAlignment="Left" 
+                <DockPanel>
+                    <Button Width="75" Margin="3" DockPanel.Dock="Right"
+                            Command="{Binding OpenMaterialEditorCommand}">
+                        Editor
+                    </Button>
+                    <ComboBox Margin="2" 
                               IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Name"
                               ItemsSource="{Binding MaterialList}" SelectedItem="{Binding Material}">
                         <ComboBox.ItemTemplate>
@@ -29,11 +34,36 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Width="75" Margin="3" HorizontalAlignment="Right"
-                            Command="{Binding OpenMaterialEditorCommand}">
-                        Editor
-                    </Button>
+                </DockPanel>
+                <DockPanel Margin="5">
+                    <Label>
+                         SubFunction:
+                    </Label>
+                    <TextBox Margin="2" Text="{Binding SubFunction}">
+                    </TextBox>
+                </DockPanel>
+                <Separator />
+                <Label>Shadows :</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Margin="3,0">
+                        <CheckBox VerticalAlignment="Center" IsChecked="{Binding ShadowCast}"/>
+                        <Label>Cast Shadows</Label>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" HorizontalAlignment="Center">
+                        <CheckBox VerticalAlignment="Center" IsChecked="{Binding DynamicShadow}"/>
+                        <Label>Dynamic Shadows</Label>
+                    </DockPanel>
                 </Grid>
+                <Separator />
+                <Grid>
+                    <Label>LOD Distance :</Label>
+                    <wpfTool:SingleUpDown FormatString="G" Value="{Binding LODout}" Increment="10" HorizontalAlignment="Right" Margin="3" Width="100"/>
+                </Grid>
+
             </StackPanel>
         </Expander>
         <Separator/>
