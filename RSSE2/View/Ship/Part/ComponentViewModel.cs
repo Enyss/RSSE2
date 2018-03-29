@@ -11,5 +11,7 @@ namespace RSSE2
     {
         protected Component _component;
         public Component Component { get { return _component; } }
+
+        public string Name { get { return _component.Name; } }
     }
 }

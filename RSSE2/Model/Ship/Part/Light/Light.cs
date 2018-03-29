@@ -17,7 +17,9 @@ namespace RSSE2
         public double intensity;
         public double spotCone;
         public ShadowType shadowType;
-        
+
+        public override string Name { get { return "Light"; } }
+
         public Light( Table table )
         {
             type = (LightType)table["LightData"]["Type"];

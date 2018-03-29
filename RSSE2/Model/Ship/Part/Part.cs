@@ -31,6 +31,11 @@ namespace RSSE2
         public Vector3 position;
         public Vector3 rotation;
 
+        public string SystemType;
+        public string UIName;
+        public string SectionName;
+
+
         public Part()
         {
             components = new Dictionary<string, Component>();
@@ -52,6 +57,19 @@ namespace RSSE2
             parentName = table["ParentTo"];
 
             type = GetObjectType(table);
+
+            SystemType = table["SystemType"];
+            UIName = table["UIName"];
+
+            dynamic sectionName;
+            if (table.TryGetValue("SectionName", out sectionName) )
+            {
+                SectionName = sectionName;
+            }
+            else
+            {
+                SectionName = "NONE";
+            }
 
             position = new Vector3(table["Position"]);
             rotation = new Vector3(table["Rotation"]);
@@ -99,11 +117,14 @@ namespace RSSE2
         {
             Table table = new Table();
 
-            table.Add("Name", name);
-            table.Add("ParentTo", parent == null ? "NONE" : parent.name);
-            table.Add("Position", position.ToTable());
-            table.Add("Rotation", rotation.ToTable());
-            table.Add("SpecialObjectName", Type.GetValueByKey1(type));
+            table["Name"] = name;
+            table["ParentTo"] = parent == null ? "NONE" : parent.name;
+            table["Position"] = position.ToTable();
+            table["Rotation"] = rotation.ToTable();
+            table["SpecialObjectName"] = Type.GetValueByKey1(type);
+            table["SystemType"] = SystemType;
+            table["UIName"] = UIName;
+            table["SectionName"] = SectionName;
 
             foreach (KeyValuePair<string, Component> pair in components)
             {

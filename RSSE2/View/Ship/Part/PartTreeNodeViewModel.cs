@@ -10,38 +10,35 @@ namespace RSSE2
 {
     public class PartTreeNodeViewModel : ObservableObject
     {
-        private Part _part;
-        public Part Part { get { return _part; } }
-
         public PartTreeNodeViewModel Parent { get; set; }
         public PartViewModel Current { get; set; }
         public ObservableCollection<PartTreeNodeViewModel> Children { get; set; }
 
         public string Name
         {
-            get { return _part.name; }
+            get { return Current.Name; }
             set
             {
-                _part.name = value;
+                Current.Name = value;
                 OnPropertyChanged();
             }
         }
 
         private ICommand _renamePartCommand;
 
-        public PartTreeNodeViewModel(Part part, PartTreeNodeViewModel parent)
+        public PartTreeNodeViewModel(Part part, PartTreeNodeViewModel parent, PartTreeViewModel tree)
         {
-            _part = part;
+            tree.PartsFlat.Add(this);
+
+            Current = new PartViewModel(part, this);
+
             Parent = parent;
 
-            Current = new PartViewModel(_part);
-
             Children = new ObservableCollection<PartTreeNodeViewModel>();
-            foreach (Part child in _part.children)
+            foreach (Part child in Current.Part.children)
             {
-                Children.Add(new PartTreeNodeViewModel(child, this));
+                Children.Add(new PartTreeNodeViewModel(child, this, tree));
             }
-
         }
 
         #region RenamePart Command

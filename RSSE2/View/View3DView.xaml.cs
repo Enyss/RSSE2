@@ -26,7 +26,7 @@ namespace RSSE2
     /// <summary>
     /// Logique d'interaction pour View3DView.xaml
     /// </summary>
-    public partial class View3DView : System.Windows.Controls.UserControl
+    public partial class View3DView : global::System.Windows.Controls.UserControl
     {        
         public View3DView()
         {

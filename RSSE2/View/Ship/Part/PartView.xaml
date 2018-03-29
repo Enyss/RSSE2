@@ -27,7 +27,7 @@
         <local:Vector3View DataContext="{Binding Position}" DockPanel.Dock="Top"/>
         <Label DockPanel.Dock="Top">Rotation:</Label>
         <local:Vector3View DataContext="{Binding Rotation}" DockPanel.Dock="Top"/>
-        <ListBox Margin="3,10" ItemsSource="{Binding Components}" DockPanel.Dock="Top">
+        <ListBox Margin="3,10" ItemsSource="{Binding Path=Components.Values}" DockPanel.Dock="Top">
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type local:ModelViewModel}">
                     <local:ModelView DataContext="{Binding}" />

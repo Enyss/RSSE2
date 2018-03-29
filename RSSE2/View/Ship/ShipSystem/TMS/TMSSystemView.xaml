@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="RSSE2.TMSSystemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             xmlns:local="clr-namespace:RSSE2"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <Label>TMS System</Label>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Heatpipe(s)</Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding Heatpipe_TOTAL}" Increment="1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Heatpipe Surface</Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding Heatpipe_SURFACEvolume}" Increment="0.1"/>
+        </Grid>
+        <Separator />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Coolant Loop(s)</Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding COOLloopTOTAL}" Increment="1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Coolant Loop Max Capacity </Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding COOLlevelMAX}" Increment="0.1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Coolant Loop Max Pressure</Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding COOLpsiMAX}" Increment="0.1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Coolant Tank Capacity</Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding COOLtankCAP}" Increment="0.1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Coolant Line Length</Label>
+            <wpfTool:SingleUpDown Grid.Column="1" Width="75" Margin="3" HorizontalAlignment="Left"
+                              FormatString="G" CultureInfo="en-US"  Value="{Binding COOLlinelength}" Increment="0.1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Coolant Liquid</Label>
+            <TextBox Grid.Column="1" Margin="3" Text="{Binding COOLcoolant}"></TextBox>
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -24,6 +24,17 @@ namespace RSSE2
             this.z = z;
         }
 
+
+        public static Vector3 operator +(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
+        }
+
+        public static Vector3 operator -(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
+        }
+
         internal float[] ToArray()
         {
             return new float[3]{ (float)x, (float)y, (float)z };

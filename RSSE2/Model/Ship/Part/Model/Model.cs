@@ -16,6 +16,9 @@ namespace RSSE2
         public bool shadowCast;
         public bool dynamicShadow;
 
+
+        public override string Name { get { return "Model"; } }
+
         public static Model GenerateComponent(Table table)
         {
             if (table.ContainsKey("Material") || table.ContainsKey("Shader"))
@@ -62,15 +65,22 @@ namespace RSSE2
 
             subFunction = table.ContainsKey("SUBfunction") ? table["SUBfunction"] : "0";
             shadowCast = table.ContainsKey("ShadowCast") ? table["ShadowCast"] == 1 : false;
-            dynamicShadow = table.ContainsKey("DynamicShadow") ? table["DynamicShadow"] == 1 : false;                
+            dynamicShadow = table.ContainsKey("DynamicShadow") ? table["DynamicShadow"] == 1 : false;
             LODout = table["LODout"];
         }
 
         override public void ToTable(Table table)
         {
             table.Add("Model", mesh);
+            table.Add("SUBfunction", subFunction);
+            table.Add("LODout", LODout);
+            table.Add("ShadowCast", shadowCast ? 1 : 0);
+            table.Add("DynamicShadow", dynamicShadow ? 1 : 0);
+
             table.Add("Material", material.Name);
+            //material.ToTable(table);
         }
+
 
         public override ComponentViewModel CreateViewModel()
         {

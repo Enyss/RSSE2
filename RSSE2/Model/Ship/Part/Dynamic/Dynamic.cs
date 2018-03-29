@@ -12,6 +12,8 @@ namespace RSSE2
         public string function;
         public int functionID;
 
+        public override string Name { get { return "Dynamic"; } }
+
         public Dynamic( Table table )
         {
             states = new List<State>();
@@ -44,7 +46,13 @@ namespace RSSE2
 
         public override void ToTable(Table table)
         {
-            throw new NotImplementedException();
+            table.Add("Function", function);
+            table.Add("FunctionID", functionID);
+
+            for (int i=1; i<= states.Count; i++)
+            {
+                table.Add("State" + i, states[i-1].ToTable());
+            }
         }
     }
 }

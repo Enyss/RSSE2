@@ -25,6 +25,8 @@ namespace RSSE2
         public bool visible;
         public bool collisionEnabled;
         public string triggerFunction;
+        public int triggerSysID = -1;
+        public int triggerState = -1;
 
         public State(Table table)
         {
@@ -38,6 +40,30 @@ namespace RSSE2
             collisionEnabled = table["CollisionEnabled"] == 1;
             triggerFunction = table["TriggerFunction"];
 
+            if( table.ContainsKey("TriggerSysID") && table.ContainsKey("TriggerState"))
+            {
+                triggerSysID = (int)table["TriggerSysID"];
+                triggerState = (int)table["TriggerState"];
+            }
+        }
+
+        public Table ToTable()
+        {
+            Table table = new Table();
+
+            table["MotionType"] = MotionTypeList.GetValueByKey2(motionType);
+            table["Position"] = position.ToTable();
+            table["Rotation"] = rotation.ToTable();
+            table["Scale"] = scale.ToTable();
+            table["StartPause"] = startPause;
+            table["Rate"] = rate;
+            table["Visible"] = visible ? 1 : 0;
+            table["CollisionEnabled"] = collisionEnabled ? 1 : 0;
+            table["TriggerFunction"] = triggerFunction;
+            table["TriggerSysID"] = triggerSysID;
+            table["TriggerState"] = triggerState;
+            
+            return table;
         }
     }
 }

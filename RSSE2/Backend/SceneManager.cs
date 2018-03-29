@@ -55,6 +55,10 @@ namespace RSSE2.Backend
             textureManager = new TextureManager();
             mdlManager = new MdlManager();
 
+            /* Load Shaders */
+            shaderManager.Load("Base.shader");
+            shaderManager.Load("Selected.shader");
+
             /* Initialize the camera */
             eye = new OpenTK.Vector3(0, 0, 0);
             direction = new OpenTK.Vector3(0, 0, 1);
@@ -81,21 +85,70 @@ MathHelper.PiOver2, 4f / 3, 0.1f, 100f);
 
             Matrix4 VP = Matrix4.LookAt(eye,eye+direction,top)*P;
 
-            foreach ( KeyValuePair<Part,Model> pair in CurrentScene.scene )
+            foreach ( KeyValuePair<PartViewModel, Model> pair in CurrentScene.scene )
             {
                 pair.Value.Load();
                 if (pair.Value != null)
                 {
-                    Matrix4 rotX = Matrix4.CreateRotationX(-(float)pair.Key.rotation.x / 180 * MathHelper.Pi);
-                    Matrix4 rotY = Matrix4.CreateRotationY(-(float)pair.Key.rotation.z / 180 * MathHelper.Pi);
-                    Matrix4 rotZ = Matrix4.CreateRotationZ((float)pair.Key.rotation.y / 180 * MathHelper.Pi);
-                    Matrix4 trans = Matrix4.CreateTranslation((float)pair.Key.position.x, (float)pair.Key.position.z, (float)pair.Key.position.y);
-                    Matrix4 M = rotZ * rotX * rotY * trans;
+                    Matrix4 M = GetStateMatrix(pair.Key);
+
+                    Vector3 rotation = pair.Key.Rotation.Vector3;
+                    Matrix4 rotX = Matrix4.CreateRotationX(-(float)rotation.x / 180 * MathHelper.Pi);
+                    Matrix4 rotY = Matrix4.CreateRotationY(-(float)rotation.z / 180 * MathHelper.Pi);
+                    Matrix4 rotZ = Matrix4.CreateRotationZ((float)rotation.y / 180 * MathHelper.Pi);
+
+                    Vector3 position = pair.Key.Position.Vector3;
+                    Matrix4 trans = Matrix4.CreateTranslation((float)position.x, (float)position.z, (float)position.y);
+                    
+
+                    M =  rotZ * rotX * rotY * trans * M;
+
+                    pair.Value.selected = pair.Key.selected;
                     pair.Value.Draw(M * VP);
                 }
             }
 
             glControl.SwapBuffers();
+        }
+
+        public Matrix4 GetStateMatrix(PartViewModel part)
+        {
+            Matrix4 M = Matrix4.Identity;
+
+            DynamicViewModel dynamic = (DynamicViewModel)part.Components["Dynamic"];
+
+
+            if (part.Node.Parent != null)
+            {
+                M = GetStateMatrix(part.Node.Parent.Current);
+            }
+
+            if (dynamic.ActiveState != null)
+            {
+                Vector3 rotation = dynamic.ActiveState.Rotation.Vector3;
+                Matrix4 rotX = Matrix4.CreateRotationX(-(float)rotation.x / 180 * MathHelper.Pi);
+                Matrix4 rotY = Matrix4.CreateRotationY(-(float)rotation.z / 180 * MathHelper.Pi);
+                Matrix4 rotZ = Matrix4.CreateRotationZ((float)rotation.y / 180 * MathHelper.Pi);
+
+                if(M == Matrix4.Identity)
+                {
+                    Vector3 position = dynamic.ActiveState.Position.Vector3;
+                    Vector3 correction = part.Position.Vector3;
+                    Matrix4 trans = Matrix4.CreateTranslation((float)position.x, (float)position.z, (float)position.y);
+                    Matrix4 corrTrans = Matrix4.CreateTranslation(-(float)correction.x, -(float)correction.z, -(float)correction.y);
+                    M = corrTrans * rotZ * rotX * rotY * trans;
+                }
+                else
+                {
+                    Vector3 position = dynamic.ActiveState.Position.Vector3;
+                    Vector3 correction = part.Position.Vector3 - part.Node.Parent.Current.Position.Vector3;
+                    Matrix4 trans = Matrix4.CreateTranslation((float)position.x, (float)position.z, (float)position.y);
+                    Matrix4 corrTrans = Matrix4.CreateTranslation(-(float)correction.x, -(float)correction.z, -(float)correction.y);
+                    M = corrTrans * rotZ * rotX * rotY * trans * M;
+                }
+            }
+
+            return M;
         }
 
         public void TranslateCamera(float distance, Translation translation)

@@ -9,7 +9,7 @@ namespace RSSE2
 {
     public class SceneViewModel
     {
-        public ObservableDictionnary<Part, RSSE2.Backend.Model> scene;
+        public ObservableDictionnary<PartViewModel, RSSE2.Backend.Model> scene;
         public bool IsLoaded {
             get;
             set;
@@ -20,14 +20,14 @@ namespace RSSE2
             IsLoaded = false;
         }
 
-        public void SetupScene( List<Part> parts )
+        public void SetupScene( List<PartViewModel> parts )
         {
-            scene = new ObservableDictionnary<Part, RSSE2.Backend.Model>();
-            foreach (Part part in parts)
+            scene = new ObservableDictionnary<PartViewModel, RSSE2.Backend.Model>();
+            foreach (PartViewModel part in parts)
             {
-                if (part.components.ContainsKey("Model"))
+                if (part.Part.components.ContainsKey("Model"))
                 {
-                    scene.Add( part, new RSSE2.Backend.Model((Model)part.components["Model"]) );
+                    scene.Add( part, new RSSE2.Backend.Model((Model)part.Part.components["Model"]) );
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace RSSE2
 
         public bool Loading()
         {
-            foreach (KeyValuePair<Part, RSSE2.Backend.Model> pair in scene)
+            foreach (KeyValuePair<PartViewModel, RSSE2.Backend.Model> pair in scene)
             {
                 pair.Value.Load();
             }

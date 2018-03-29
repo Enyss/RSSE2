@@ -126,6 +126,68 @@
     <Compile Include="Backend\Vertex.cs" />
     <Compile Include="Backend\VertexAttribute.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="Model\Menu\NewHull.cs" />
+    <Compile Include="Model\Menu\ShipHullList.cs" />
+    <Compile Include="View\Menu\NewHullPopup.xaml.cs">
+      <DependentUpon>NewHullPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu\ShipHullListView.xaml.cs">
+      <DependentUpon>ShipHullListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu\ShipHullListViewModel.cs">
+      <DependentUpon>ShipHullListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\BMS\BatteryLocationView.xaml.cs">
+      <DependentUpon>BatteryLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ship\ShipSystem\BMS\BatteryLocation.cs" />
+    <Compile Include="Model\Ship\ShipSystem\BMS\BMSSystem.cs" />
+    <Compile Include="Model\Ship\ShipSystem\LSS\ScrubberLocation.cs" />
+    <Compile Include="View\Ship\ShipSystem\BMS\BatteryLocationViewModel.cs">
+      <DependentUpon>BatteryLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\BMS\BMSSystemView.xaml.cs">
+      <DependentUpon>BMSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\BMS\BMSSystemViewModel.cs">
+      <DependentUpon>BMSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\LSS\ScrubberLocationView.xaml.cs">
+      <DependentUpon>ScrubberLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\LSS\LSSSystemView.xaml.cs">
+      <DependentUpon>LSSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\LSS\LSSSystemViewModel.cs">
+      <DependentUpon>LSSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ship\ShipSystem\LSS\LSSSystem.cs" />
+    <Compile Include="Model\Ship\ShipSystem\TMS\TMSSystem.cs" />
+    <Compile Include="View\Ship\ShipSystem\LSS\ScrubberLocationViewModel.cs">
+      <DependentUpon>ScrubberLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\TMS\TMSSystemView.xaml.cs">
+      <DependentUpon>TMSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\TMS\TMSSystemViewModel.cs">
+      <DependentUpon>TMSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\ECS\ECSBusView.xaml.cs">
+      <DependentUpon>ECSBusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\ECS\ECSBusViewModel.cs">
+      <DependentUpon>ECSBusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\ECS\ECSSystemView.xaml.cs">
+      <DependentUpon>ECSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ship\ShipSystem\ECS\ECSBus.cs" />
+    <Compile Include="Model\Ship\ShipSystem\ECS\ECSSystem.cs" />
+    <Compile Include="Model\Ship\ShipSystem\ShipSystem.cs" />
+    <Compile Include="View\Ship\ShipSystem\ECS\ECSSystemViewModel.cs">
+      <DependentUpon>ECSSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ship\ShipSystem\ShipSystemViewModel.cs" />
     <Compile Include="View\Ship\Part\Dynamic\DynamicViewModel.cs">
       <DependentUpon>DynamicView.xaml</DependentUpon>
     </Compile>
@@ -291,6 +353,42 @@
     <Compile Include="View\View3DViewModel.cs">
       <DependentUpon>View3DView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Menu\NewHullPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Menu\ShipHullListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\BMS\BatteryLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\BMS\BMSSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\LSS\ScrubberLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\LSS\LSSSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\TMS\TMSSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\ECS\ECSBusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ship\ShipSystem\ECS\ECSSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Ship\Part\Dynamic\StateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -418,6 +516,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Base.shader" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -427,6 +526,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="RSSE2_TemporaryKey.pfx" />
+    <None Include="Selected.shader" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

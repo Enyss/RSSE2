@@ -17,28 +17,44 @@
                     <Label Width="75">FunctionID :</Label>
                     <TextBox Margin="3" Text="{Binding FunctionID}"/>
                 </DockPanel>
-                <Label>States :</Label>
-                <ListBox ItemsSource="{Binding States}" Name="StateList" MinHeight="50">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="15" />
-                                    <ColumnDefinition Width="150" />
-                                    <ColumnDefinition Width="50" />                                    
-                                </Grid.ColumnDefinitions>
-                                <RadioButton></RadioButton>
-                                <TextBlock Grid.Column="1">State</TextBlock>
-                                <Button Grid.Column="2">Delete</Button>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <local:StateView DataContext="{Binding ElementName=StateList, Path=SelectedItem}" >
+                <DockPanel>
+                    <ListView  Name="StateList" MinHeight="75" Grid.Column="1" Grid.Row="1" Margin="3"
+                              ItemsSource="{Binding States}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="State" Width="170">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="State" />
+                                                <TextBlock Text="{Binding Key}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Active" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Value.Active}"
+                                                  Command="{Binding DataContext.SetActiveStateCommand,
+                                                                    RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                                                  CommandParameter="{Binding Value}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel>
+                        <Button Width="50" Height="20" Margin="3,30,3,3">Add</Button>
+                        <Button Width="50" Height="20" Margin="3">Remove</Button>
+                    </StackPanel>
+                </DockPanel>
+                <local:StateView DataContext="{Binding ElementName=StateList, Path=SelectedItem.Value}" >
                     <local:StateView.Style>
                         <Style TargetType="local:StateView">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=StateList, Path=SelectedItem}" Value="{x:Null}">
+                                <DataTrigger Binding="{Binding ElementName=StateList, Path=SelectedItem.Value}" Value="{x:Null}">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>

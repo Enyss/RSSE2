@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,14 @@ namespace RSSE2
         }
 
         public PartTreeViewModel Interior { get; set; }
+        public List<PartViewModel> InteriorParts;
         public PartTreeViewModel Exterior { get; set; }
+        public List<PartViewModel> ExteriorParts;
 
         public SceneViewModel InteriorScene { get; set; }
         public SceneViewModel ExteriorScene { get; set; }
 
+        public ObservableCollection<ShipSystemViewModel> ShipSystems { get; set; }
 
         #region Commands
 
@@ -53,28 +57,50 @@ namespace RSSE2
         public void UpdateViewModel()
         {
             Interior = new PartTreeViewModel();
+            InteriorParts = new List<PartViewModel>();
+
             foreach (Part part in ship.interior)
             {
                 if (part.parent == null)
                 {
-                    Interior.Parts.Add(new PartTreeNodeViewModel(part, null));
+                    PartTreeNodeViewModel node = new PartTreeNodeViewModel(part, null, Interior);
+                    Interior.Parts.Add(node);
+                    FlatPartsList(InteriorParts,node);
                 }
             }
 
             InteriorScene = new SceneViewModel();
-            InteriorScene.SetupScene(ship.interior);
+            InteriorScene.SetupScene(InteriorParts);
 
             Exterior = new PartTreeViewModel();
+            ExteriorParts = new List<PartViewModel>();
             foreach (Part part in ship.exterior)
             {
                 if (part.parent == null)
                 {
-                    Exterior.Parts.Add(new PartTreeNodeViewModel(part, null));
+                    PartTreeNodeViewModel node = new PartTreeNodeViewModel(part, null, Exterior);
+                    Exterior.Parts.Add(node);
+                    FlatPartsList(ExteriorParts, node);
                 }
             }
 
             ExteriorScene = new SceneViewModel();
-            ExteriorScene.SetupScene(ship.exterior);
+            ExteriorScene.SetupScene(ExteriorParts);
+
+            ShipSystems = new ObservableCollection<ShipSystemViewModel>();
+            foreach (ShipSystem system in ship.shipSystems)
+            {
+                ShipSystems.Add(system.CreateViewModel());
+            }
+        }
+
+        private void FlatPartsList(List<PartViewModel> list, PartTreeNodeViewModel node)
+        {
+            list.Add(node.Current);
+            foreach( PartTreeNodeViewModel child in node.Children)
+            {
+                FlatPartsList(list, child);
+            }
         }
 
         private void SaveShip()

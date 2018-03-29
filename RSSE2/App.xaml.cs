@@ -11,7 +11,7 @@ namespace RSSE2
     /// <summary>
     /// Logique d'interaction pour App.xaml
     /// </summary>
-    public partial class App : System.Windows.Application
+    public partial class App : global::System.Windows.Application
     {
     }
 }

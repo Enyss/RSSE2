@@ -26,17 +26,29 @@ namespace RSSE2
         }
 
         public static readonly DependencyProperty SelectedPartProperty =
-    DependencyProperty.Register("SelectedPart", typeof(PartViewModel), typeof(PartTreeView));
+    DependencyProperty.Register("SelectedPart", typeof(PartTreeNodeViewModel), typeof(PartTreeView));
 
-        public PartViewModel SelectedPart
+        public PartTreeNodeViewModel SelectedPart
         {
-            get { return (PartViewModel)GetValue(SelectedPartProperty); }
-            set { SetValue(SelectedPartProperty, value); }
+            get { return (PartTreeNodeViewModel)GetValue(SelectedPartProperty); }
+            set
+            {
+                if (SelectedPart != null)
+                {
+                    SelectedPart.Current.selected = false;
+                }
+                if (value != null)
+                {
+                    value.Current.selected = true;
+                }
+                SetValue(SelectedPartProperty, value);
+                Backend.SceneManager.Instance.Paint();
+            }
         }
 
         private void Tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            SelectedPart = new PartViewModel( ((PartTreeNodeViewModel)e.NewValue).Part );
+            SelectedPart = (PartTreeNodeViewModel)e.NewValue;
         }
     }
 }

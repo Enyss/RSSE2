@@ -12,7 +12,18 @@ namespace RSSE2
     {
         public List<Part> interior;
         public List<Part> exterior;
+        public List<ShipSystem> shipSystems;
         public string name;
+
+        public bool interiorAvailable;
+        public ColorRGB color_EMERlight;
+        public Vector3 playerSTART;
+
+        public string pilot_CONTROLS;
+        public string pilot_INSTRUMENTS;
+        public string pilot_VMS;
+        public string pilot_MFD;
+        public string pilot_CAW;
 
         private Table baseTable;
         private Table exteriorTable;
@@ -47,6 +58,27 @@ namespace RSSE2
 
             interior = tableToPartList(interiorTable);
             exterior = tableToPartList(exteriorTable);
+            shipSystems = tableToSystemList(baseTable);
+
+            interiorAvailable = (int)baseTable["InteriorAvailable"] == 1;
+            color_EMERlight = new ColorRGB(baseTable["color_EMERlight"]);
+            playerSTART = new Vector3(baseTable["playerSTART"]);
+
+            pilot_CONTROLS = baseTable["pilot_CONTROLS"];
+            pilot_INSTRUMENTS = baseTable["pilot_INSTRUMENTS"];
+            pilot_VMS = baseTable["pilot_VMS"];
+            pilot_MFD = baseTable["pilot_MFD"];
+            pilot_CAW = baseTable["pilot_CAW"];
+        }
+
+        private List<ShipSystem> tableToSystemList(Table table)
+        {
+            List<ShipSystem> systems = new List<ShipSystem>();
+            systems.Add(new BMSSystem(table));
+            systems.Add(new ECSSystem(table));
+            systems.Add(new LSSSystem(table));
+            systems.Add(new TMSSystem(table));
+            return systems;
         }
 
         public List<Part> tableToPartList(Table table)
@@ -81,7 +113,6 @@ namespace RSSE2
             ship.Add(name, baseTable);
 
             exteriorTable = new Table();
-            exteriorTable.Add("Total", exterior.Count);
             for (int i = 1; i<= exterior.Count; i++)
             {
                 exteriorTable.Add("Mesh" + i, exterior[i-1].ToTable() );
@@ -93,7 +124,12 @@ namespace RSSE2
             ship.Add(name + "Coords", coordsTable);
             string s = ship.ToLuaString(0);
 
-            File.WriteAllText(name + ".ROG", s);
+            File.WriteAllText(Application.Instance.Settings.RSFolder + @"Mod\RogSysCM\Ships\" + name + ".ROG", s);
+
+            foreach(Material mat in MaterialManager.Instance.MaterialList)
+            {
+                mat.ToFile(Application.Instance.Settings.RSFolder + @"Mod\RogSysCM\Ships\" + name + @"\");
+            }
         }
     }
 }

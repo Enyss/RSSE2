@@ -14,6 +14,8 @@ namespace RSSE2
         public double mass;
         public double friction;
 
+        public override string Name { get { return "Physic"; } }
+
         public Physic()
         {
             shape = null;

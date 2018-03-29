@@ -124,5 +124,50 @@ namespace RSSE2
             }
             return name;
         }
+
+        public void ToTable(Table table)
+        {
+            /*table.Add("Shader", ExtractName(shader, ".shader"));
+
+            Table t = new Table();
+            for (int i = 0; i < textures.Length; i++)
+            {
+                if (textures[i] != null)
+                {
+                    t.Add("T" + (i + 1), ExtractName(textures[i], ".tex"));
+                }
+            }
+            table.Add("Textures", t.Count);
+            table.Add("Texture", t);*/
+        }
+
+        public void ToFile(string folder)
+        {
+            string s = ""; /* @"
+blendmode=0
+castshadows=0
+zsort=0
+cullbackfaces=1
+depthtest=1
+pickmode=0
+depthmask=1
+diffuse=1.00000000,1.00000000,1.00000000,1.00000000
+specular=0.501960814,0.501960814,0.501960814,1.00000000
+alwaysuseshader=0
+roughness=0.50000000000000000
+mappingscale=1.00000000,1.00000000,1.00000000
+drawmode=-1
+";*/
+            s += "shader=\"" + shader + "\"" + Environment.NewLine;
+            for (int i = 0; i < textures.Length; i++)
+            {
+                if (textures[i] != null && textures[i] != "")
+                {
+                    s += "texture" + i + "=\"" + textures[i] + "\"" + Environment.NewLine;
+                }
+            }
+
+            File.WriteAllText(folder + name + ".mat", s);
+        }
     }
 }

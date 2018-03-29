@@ -38,5 +38,17 @@
             <Label>Trigger function :</Label>
             <TextBox VerticalAlignment="Center" Margin="3" Text="{Binding TriggerFunction}"/>
         </DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="85" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label>Trigger SyID :</Label>
+            <TextBox Grid.Column="1" Margin="3" Text="{Binding TriggerSysID}"/>
+            <Label Grid.Column="2">Trigger State :</Label>
+            <TextBox Grid.Column="3" Margin="3" Text="{Binding TriggerState}"/>
+        </Grid>
     </StackPanel>
 </UserControl>

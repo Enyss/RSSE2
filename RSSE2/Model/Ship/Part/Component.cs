@@ -10,5 +10,7 @@ namespace RSSE2
     {
         public abstract ComponentViewModel CreateViewModel();
         public abstract void ToTable(Table table);
+
+        public abstract string Name { get; }
     }
 }

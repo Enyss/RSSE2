@@ -13,6 +13,9 @@ namespace RSSE2
         private Part _part;
         public Part Part { get { return _part; } }
 
+        public PartTreeNodeViewModel Node { get; }
+        public bool selected;
+
         public string Name
         {
             get { return _part.name; }
@@ -60,12 +63,13 @@ namespace RSSE2
             }
         }
 
-        public ObservableCollection<ComponentViewModel> Components { get; set; }
+        public ObservableDictionnary<string, ComponentViewModel> Components { get; set; }
 
-        public PartViewModel(Part part)
+        public PartViewModel(Part part, PartTreeNodeViewModel node)
         {
             /* set the Properties */
             _part = part;
+            Node = node;
             position = new Vector3ViewModel(_part.position);
             rotation = new Vector3ViewModel(_part.rotation);
 
@@ -74,14 +78,14 @@ namespace RSSE2
             rotation.PropertyChanged += (sender, args) => { Backend.SceneManager.Instance.Paint(); };
 
             /* Create the ComponentViewModels */
-            Components = new ObservableCollection<ComponentViewModel>();
-            foreach (Component component in _part.components.Values)
+            Components = new ObservableDictionnary<string, ComponentViewModel>();
+            foreach (KeyValuePair<string,Component> pair in _part.components)
             {
-                Components.Add(component.CreateViewModel());
+                Components.Add(pair.Key, pair.Value.CreateViewModel());
             }
 
         }
-        
+
         private ICommand _removeComponentCommand;
         #region RemoveComponentCommand 
 
@@ -107,12 +111,8 @@ namespace RSSE2
 
         public void RemoveComponent(ComponentViewModel component)
         {
-            Components.Remove(component);
-
-            // find the key
-            string key = Part.components.FirstOrDefault(x => x.Value == component.Component).Key;
-            // remove
-            Part.components.Remove(key);
+            Components.Remove( component.Name );
+            Part.components.Remove( component.Name );
         }
 
         #endregion

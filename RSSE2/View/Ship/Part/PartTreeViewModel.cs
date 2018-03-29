@@ -11,7 +11,8 @@ namespace RSSE2
 {
     public class PartTreeViewModel : DependencyObject
     {
-        public ObservableCollection<PartTreeNodeViewModel> Parts { set; get; }
+        public ObservableCollection<PartTreeNodeViewModel> Parts { get; }
+        public ObservableCollection<PartTreeNodeViewModel> PartsFlat { get; }
         private ICommand _addPartCommand;
         private ICommand _removePartCommand;
 
@@ -20,6 +21,7 @@ namespace RSSE2
         public PartTreeViewModel()
         {
             Parts = new ObservableCollection<PartTreeNodeViewModel>();
+            PartsFlat = new ObservableCollection<PartTreeNodeViewModel>();
             Scene = new View3DViewModel();
         }
 
@@ -27,8 +29,8 @@ namespace RSSE2
 
         public void AddPart()
         {
-            Part part = new Part();
-            Parts.Add(new PartTreeNodeViewModel(part, null));
+            PartTreeNodeViewModel part = new PartTreeNodeViewModel(new Part(), null, this);
+            Parts.Add(part);
         }
 
         public ICommand AddPartCommand
@@ -58,6 +60,7 @@ namespace RSSE2
 
         public void RemovePart( PartTreeNodeViewModel part )
         {
+            PartsFlat.Remove(part);
             if (part.Parent == null)
             {
                 Parts.Remove(part);

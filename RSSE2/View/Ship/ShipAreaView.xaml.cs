@@ -23,7 +23,7 @@ namespace RSSE2
     /// <summary>
     /// Logique d'interaction pour ShipAreaView.xaml
     /// </summary>
-    public partial class ShipAreaView : System.Windows.Controls.UserControl
+    public partial class ShipAreaView : global::System.Windows.Controls.UserControl
     {
         public ShipAreaView()
         {

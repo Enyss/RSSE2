@@ -76,6 +76,37 @@ namespace RSSE2
                 OnPropertyChanged();
             }
         }
+
+        public int TriggerSysID
+        {
+            get { return State.triggerSysID; }
+            set
+            {
+                State.triggerSysID = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int TriggerState
+        {
+            get { return State.triggerState; }
+            set
+            {
+                State.triggerState = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _active = false;
+        public bool Active
+        {
+            get { return _active; }
+            set
+            {
+               _active=value ;
+                OnPropertyChanged();
+            }
+        }
         
         public StateViewModel(State state)
         {
